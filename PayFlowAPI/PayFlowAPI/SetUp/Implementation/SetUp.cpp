@@ -12,7 +12,7 @@ void formatResponse(crow::response& res, nlohmann::json body)
 {
     res.add_header("Access-Control-Allow-Origin", "*");
     res.add_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.add_header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.add_header("Access-Control-Allow-Headers", "Content-Type");
     res.body = body.dump();
     res.code = 200;
 }
@@ -21,7 +21,7 @@ void formatResponse(crow::response& res)
 {
     res.add_header("Access-Control-Allow-Origin", "*");
     res.add_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.add_header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.add_header("Access-Control-Allow-Headers", "Content-Type");
     res.code = 200;
 }
 
