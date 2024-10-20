@@ -1,4 +1,5 @@
 #include "../Headers/Endpoints.h"
+#include "..\..\Endpoints\Headers\PaymentEndpoints.h"
 
 void generateEndpoints(crow::SimpleApp& app)
 {
@@ -8,5 +9,6 @@ void generateEndpoints(crow::SimpleApp& app)
         formatResponse(response);
         return response;
     });
-
+    
+    generatePaymentsEndpoints(app);
 }

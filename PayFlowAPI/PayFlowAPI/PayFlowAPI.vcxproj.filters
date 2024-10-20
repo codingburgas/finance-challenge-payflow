@@ -27,6 +27,9 @@
     <ClCompile Include="Services\Implementation\PaymentService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Endpoints\Implementation\PaymentEndpoints.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SetUp\Headers\SetUp.h">
@@ -38,7 +41,16 @@
     <ClInclude Include="Services\Headers\PaymentService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\Payment.h">
+    <ClInclude Include="Models\EntityModels\Payment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\JsonConverters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\PaymentResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Endpoints\Headers\PaymentEndpoints.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

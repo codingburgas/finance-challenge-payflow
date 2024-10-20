@@ -1,6 +1,6 @@
 #include "../Headers/SetUp.h"
 
-std::string dbConnectionString = "Driver={ODBC Driver 18 for SQL Server};Server=(localdb)\\MSSQLLocalDB;Database=PayFlowExmaple;Trusted_Connection=yes";
+std::string dbConnectionString = "Driver={ODBC Driver 18 for SQL Server};Server=(localdb)\\MSSQLLocalDB;Database=PayFlowExample;Trusted_Connection=yes";
 
 nanodbc::connection setUpConnection()
 {
