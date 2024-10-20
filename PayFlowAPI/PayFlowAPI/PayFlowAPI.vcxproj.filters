@@ -53,5 +53,8 @@
     <ClInclude Include="Endpoints\Headers\PaymentEndpoints.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Models\RequestModels\PaymentRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

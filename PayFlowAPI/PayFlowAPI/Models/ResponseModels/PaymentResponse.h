@@ -33,4 +33,6 @@ public:
 
 	PaymentResponse(int id, int userId, std::string paymentTo, std::string paymentDate, double amount, std::string billingAddress, int returnedAmount) :
 		id(id), userId(userId), paymentTo(paymentTo), paymentDate(paymentDate), amount(amount), billingAddress(billingAddress), returnedAmount(returnedAmount) {};
+
+	PaymentResponse() {}
 };

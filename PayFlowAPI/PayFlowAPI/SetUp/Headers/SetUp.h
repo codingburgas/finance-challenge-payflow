@@ -10,3 +10,4 @@
 nanodbc::connection setUpConnection();
 void formatResponse(crow::response& res, nlohmann::json body);
 void formatResponse(crow::response& res);
+nanodbc::timestamp convertToTimestamp(std::string date);

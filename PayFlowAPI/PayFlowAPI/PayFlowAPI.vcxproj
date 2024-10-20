@@ -137,6 +137,7 @@
     <ClInclude Include="Endpoints\Headers\PaymentEndpoints.h" />
     <ClInclude Include="Models\EntityModels\Payment.h" />
     <ClInclude Include="Models\JsonConverters.h" />
+    <ClInclude Include="Models\RequestModels\PaymentRequest.h" />
     <ClInclude Include="Models\ResponseModels\PaymentResponse.h" />
     <ClInclude Include="Services\Headers\PaymentService.h" />
     <ClInclude Include="SetUp\Headers\Endpoints.h" />
