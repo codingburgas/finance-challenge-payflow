@@ -1,12 +1,12 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <nanodbc/nanodbc.h>
-#include <optional>
 #include <crow.h>
-#include <nlohmann/json.hpp>
+#include "SetUp/Headers/Endpoints.h"
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    crow::SimpleApp app;
+
+    generateEndpoints(app);
+
+    app.port(18080).multithreaded().run();
 }

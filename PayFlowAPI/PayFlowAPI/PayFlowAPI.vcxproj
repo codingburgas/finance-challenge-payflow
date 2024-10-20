@@ -128,6 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PayFlowAPI.cpp" />
+    <ClCompile Include="Services\Implementation\PaymentService.cpp" />
+    <ClCompile Include="SetUp\Implementation\Endpoints.cpp" />
+    <ClCompile Include="SetUp\Implementation\SetUp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Models\Payment.h" />
+    <ClInclude Include="Services\Headers\PaymentService.h" />
+    <ClInclude Include="SetUp\Headers\Endpoints.h" />
+    <ClInclude Include="SetUp\Headers\SetUp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
