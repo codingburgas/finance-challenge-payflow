@@ -30,6 +30,12 @@
     <ClCompile Include="Endpoints\Implementation\PaymentEndpoints.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Endpoints\Implementation\UserEndpoints.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\Implementation\UserService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SetUp\Headers\SetUp.h">
@@ -44,9 +50,6 @@
     <ClInclude Include="Models\EntityModels\Payment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\JsonConverters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Models\ResponseModels\PaymentResponse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,6 +57,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Models\RequestModels\PaymentRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Endpoints\Headers\UserEndpoints.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\RequestModels\LogInRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityModels\User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\Headers\UserService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\LogInResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\RequestModels\RegisterRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\RegisterResponse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

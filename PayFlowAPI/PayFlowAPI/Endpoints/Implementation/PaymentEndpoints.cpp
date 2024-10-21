@@ -2,32 +2,51 @@
 #include "..\..\SetUp\Headers\SetUp.h"
 #include "..\..\Services\Headers\PaymentService.h"
 #include "..\..\Models\ResponseModels\PaymentResponse.h"
-#include "..\..\Models\JsonConverters.h"
 #include <nlohmann/json.hpp>
 
-crow::response getAllPayments()
-{
-    crow::response response;
-    nlohmann::json responseBody;
 
-    PaymentService service;
-    service.conn = setUpConnection();
+void to_json(nlohmann::json& j, const PaymentResponse& e) {
+    j = nlohmann::json{
+        {"id", e.id},
+        {"userId",e.userId},
+        {"paymentTo", e.paymentTo},
+        {"paymentDate", e.paymentDate},
+        {"amount", e.amount},
+        {"billingAddress", e.billingAddress},
+        {"returnedAmount", e.returnedAmount}
+    };
+}
 
-    std::vector<Payment> payments = service.readAll();
-    service.conn.disconnect();
+void from_json(const nlohmann::json& j, PaymentResponse& e) {
+    e.id = j["id"];
+    e.userId = j["userId"];
+    e.paymentTo = j["paymentTo"];
+    e.paymentDate = j["paymentDate"];
+    e.amount = j["amount"];
+    e.billingAddress = j["billingAddress"];
+    e.returnedAmount = j["returnedAmount"];
+}
 
-    std::vector<PaymentResponse> paymentResponses;
-    for (size_t i = 0; i < payments.size(); i++)
-    {
-        paymentResponses.push_back(payments[i]);
-    }
 
-    if (paymentResponses.size() > 0)
-    {
-        responseBody = paymentResponses;
-    }
-    formatResponse(response, responseBody);
-    return response;
+
+void to_json(nlohmann::json& j, const PaymentRequest& e) {
+    j = nlohmann::json{
+        {"userId",e.userId},
+        {"paymentTo", e.paymentTo},
+        {"paymentDate", e.paymentDate},
+        {"amount", e.amount},
+        {"billingAddress", e.billingAddress},
+        {"returnedAmount", e.returnedAmount}
+    };
+}
+
+void from_json(const nlohmann::json& j, PaymentRequest& e) {
+    e.userId = j["userId"];
+    e.paymentTo = j["paymentTo"];
+    e.paymentDate = j["paymentDate"];
+    e.amount = j["amount"];
+    e.billingAddress = j["billingAddress"];
+    e.returnedAmount = j["returnedAmount"];
 }
 
 crow::response getPayment(int id)
@@ -43,7 +62,7 @@ crow::response getPayment(int id)
 
     if (payment != nullptr)
     {
-        responseBody = *payment;
+        responseBody = PaymentResponse(*payment);
     }
     delete payment;
     formatResponse(response, responseBody);
@@ -125,7 +144,6 @@ crow::response deletePayment(int id)
 
 void generatePaymentsEndpoints(crow::SimpleApp& app)
 {
-    CROW_ROUTE(app, "/api/payments/getAll").methods("GET"_method)(getAllPayments);
     CROW_ROUTE(app, "/api/payments/get/<int>").methods("GET"_method)(getPayment);
     CROW_ROUTE(app, "/api/payments/getByUser/<int>").methods("GET"_method)(getPaymentsByUser);
     CROW_ROUTE(app, "/api/payments/add").methods("POST"_method)([](const crow::request& request) {

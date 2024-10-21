@@ -128,18 +128,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Endpoints\Implementation\PaymentEndpoints.cpp" />
+    <ClCompile Include="Endpoints\Implementation\UserEndpoints.cpp" />
     <ClCompile Include="PayFlowAPI.cpp" />
     <ClCompile Include="Services\Implementation\PaymentService.cpp" />
+    <ClCompile Include="Services\Implementation\UserService.cpp" />
     <ClCompile Include="SetUp\Implementation\Endpoints.cpp" />
     <ClCompile Include="SetUp\Implementation\SetUp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Endpoints\Headers\PaymentEndpoints.h" />
+    <ClInclude Include="Endpoints\Headers\UserEndpoints.h" />
     <ClInclude Include="Models\EntityModels\Payment.h" />
-    <ClInclude Include="Models\JsonConverters.h" />
+    <ClInclude Include="Models\EntityModels\User.h" />
+    <ClInclude Include="Models\RequestModels\LogInRequest.h" />
     <ClInclude Include="Models\RequestModels\PaymentRequest.h" />
+    <ClInclude Include="Models\RequestModels\RegisterRequest.h" />
+    <ClInclude Include="Models\ResponseModels\LogInResponse.h" />
     <ClInclude Include="Models\ResponseModels\PaymentResponse.h" />
+    <ClInclude Include="Models\ResponseModels\RegisterResponse.h" />
     <ClInclude Include="Services\Headers\PaymentService.h" />
+    <ClInclude Include="Services\Headers\UserService.h" />
     <ClInclude Include="SetUp\Headers\Endpoints.h" />
     <ClInclude Include="SetUp\Headers\SetUp.h" />
   </ItemGroup>
