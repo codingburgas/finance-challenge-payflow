@@ -110,7 +110,7 @@ crow::response registerUser(RegisterRequest registerRequest)
     return response;
 }
 
-void generateUsersEndpoints(crow::SimpleApp& app)
+void generateUsersEndpoints(crow::App<crow::CORSHandler>& app)
 {
     CROW_ROUTE(app, "/api/user/logIn").methods("POST"_method)([](const crow::request& request) {
         nlohmann::json requestBody = nlohmann::json::parse(request.body);

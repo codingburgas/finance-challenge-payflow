@@ -1,4 +1,5 @@
 #pragma once
 #include "SetUp.h"
+#include <crow/middlewares/cors.h>
 
-void generateEndpoints(crow::SimpleApp& app);
+void generateEndpoints(crow::App<crow::CORSHandler>& app);

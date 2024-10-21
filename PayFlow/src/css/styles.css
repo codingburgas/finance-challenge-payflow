@@ -1,6 +1,6 @@
-.playmentEntry
-{
-    background-color: gray;
-    margin: 20px;
-    padding: 20px;
+body{
+    background: linear-gradient(to bottom right, #030d49 40%, #05177c 80%);
+    height: 100vh;
+    margin: 0;
 }
+

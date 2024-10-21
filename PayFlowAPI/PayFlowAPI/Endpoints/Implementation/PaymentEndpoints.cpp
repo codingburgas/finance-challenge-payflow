@@ -142,7 +142,7 @@ crow::response deletePayment(int id)
     return response;
 }
 
-void generatePaymentsEndpoints(crow::SimpleApp& app)
+void generatePaymentsEndpoints(crow::App<crow::CORSHandler>& app)
 {
     CROW_ROUTE(app, "/api/payments/get/<int>").methods("GET"_method)(getPayment);
     CROW_ROUTE(app, "/api/payments/getByUser/<int>").methods("GET"_method)(getPaymentsByUser);
