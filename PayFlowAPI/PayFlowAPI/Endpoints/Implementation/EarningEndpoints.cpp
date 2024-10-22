@@ -39,14 +39,14 @@ void from_json(const nlohmann::json& j, EarningResponse& e) {
 //crow::response getEarningByUser(int userId) 
 //{
 
-    //crow::response response;
-    //::json responseBody;
+   // crow::response response;
+   // nlohmann::json responseBody;
 
     //PaymentService service;
-    //service.conn = setUpConnection();
+   // service.conn = setUpConnection();
 //}
 
 void generateEarningEndpoints(crow::App<crow::CORSHandler>& app)
 {
-    //CROW_ROUTE(app, "/api/earning/get/<int>").methods("GET"_method)(getPayment);
+   // CROW_ROUTE(app, "/api/earning/get/<int>").methods("GET"_method)(getPayment);
 }

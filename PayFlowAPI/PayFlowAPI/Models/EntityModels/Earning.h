@@ -6,13 +6,13 @@
 class Earning {
 
 public:
-
+	int id;
 	int userId;
 	nanodbc::timestamp earningsDate;
 	std::string type;
 	double amount;
 
-	Earning(EarningRequest h) : userId(h.userId), type(h.type), amount(h.amount)
+	Earning(EarningRequest h) : id(h.id), userId(h.userId), type(h.type), amount(h.amount)
 	{
 		earningsDate = convertToTimestamp(h.earningsDate);
 	}

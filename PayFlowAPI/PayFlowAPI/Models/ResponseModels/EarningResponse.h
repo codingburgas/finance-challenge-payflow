@@ -3,12 +3,13 @@
 
 class EarningResponse {
 public:
+	int id;
 	int userId;
 	std::string earningsDate;
 	std::string type;
 	double amount;
 
-	EarningResponse(Earning a) : userId(a.userId), type(a.type), amount(a.amount)
+	EarningResponse(Earning a) : id(a.id), userId(a.userId), type(a.type), amount(a.amount)
 	{
 		earningsDate =
 			std::to_string(a.earningsDate.year) + "-" +
