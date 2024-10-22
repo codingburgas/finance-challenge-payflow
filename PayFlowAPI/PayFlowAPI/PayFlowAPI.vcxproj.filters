@@ -36,6 +36,9 @@
     <ClCompile Include="Services\Implementation\UserService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Endpoints\Implementation\EarningEndpoints.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SetUp\Headers\SetUp.h">
@@ -78,6 +81,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Models\ResponseModels\RegisterResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Endpoints\Headers\EarningEndpoints.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityModels\Earning.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\RequestModels\EarningRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\EarningResponse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

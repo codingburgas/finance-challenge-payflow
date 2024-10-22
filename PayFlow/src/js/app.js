@@ -21,6 +21,12 @@ document.getElementById('logInForm').addEventListener('submit', (event)=>{
     logIn(formJSON);
 });
 
+document.getElementById('registerForm').addEventListener('submit', (event)=>{
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const formJSON = Object.fromEntries(formData.entries());
+});
+
 function getAllPayments()
 {
     axios.get(apiURL + `payments/getByUser/${userId}`)
@@ -117,3 +123,34 @@ function logIn(body)
     });
 }
 
+function register(body)
+{
+    axios.post(apiURL + `user/register`, body)
+    .then(function (response) {
+        if(response.status == 200)
+        {
+            if(response != null)
+            {
+                console.log(response.data);
+                if(response.data.userId != -1)
+                {
+                    userId = response.data.userId;
+                    alert(`User logged ${userId}`);
+                }
+                else
+                {
+                    alert("Unauthorised");
+                }
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}
