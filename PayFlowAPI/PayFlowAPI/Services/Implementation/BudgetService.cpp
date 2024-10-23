@@ -7,7 +7,7 @@ bool BudgetService::create(Budget newBudgets)
 			([UserId]
 			,[ExpenseType]
 			,[Amount])
-		VALUES (?,?,?,?)
+		VALUES (?,?,?)
 	)";
 
 	nanodbc::statement create(conn);
@@ -122,9 +122,9 @@ bool BudgetService::update(int id, Budget updatedBudget)
 	nanodbc::prepare(update, query);
 
 	update.bind(0, &updatedBudget.userId);
-	update.bind(2, updatedBudget.expenseType.c_str());
-	update.bind(3, &updatedBudget.amount);
-	update.bind(4, &id);
+	update.bind(1, updatedBudget.expenseType.c_str());
+	update.bind(2, &updatedBudget.amount);
+	update.bind(3, &id);
 
 	nanodbc::execute(update);
 	return true;
