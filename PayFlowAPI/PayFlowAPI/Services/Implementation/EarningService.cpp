@@ -1,24 +1,23 @@
 #include "../Headers/EarningService.h"
 
-bool EarningService::create(Earning newPayment) 
+bool EarningService::create(Earning newEarning) 
 {
 	std::string query = R"(
-	INSERT INTO [Earning]
-		([id]
-		,[UserId]
-		,[Date]
-		,[Type]
-		,[Amount])
-	VALUES (?,?,?,?,?)
-)";
+	INSERT INTO [Earnings]
+			([UserId]
+			,[Date]
+			,[Type]
+			,[Amount])
+		VALUES (?,?,?,?)
+	)";
+
 	nanodbc::statement create(conn);
 	nanodbc::prepare(create, query);
 
-	create.bind(0, &newPayment.id);
-	create.bind(1, &newPayment.userId);
-	create.bind(2, &newPayment.earningsDate);
-	create.bind(3, newPayment.type.c_str());
-	create.bind(4, &newPayment.amount);
+	create.bind(0, &newEarning.userId);
+	create.bind(1, &newEarning.date);
+	create.bind(2, newEarning.type.c_str());
+	create.bind(3, &newEarning.amount);
 
 	nanodbc::execute(create);
 
@@ -29,12 +28,12 @@ std::vector<Earning> EarningService::readAll()
 {
 	std::string query = R"(
 		SELECT [Id]
-		,[UserId]
-		,[Date]
-		,[Type]
-		,[Amount]
-	FROM[Eernings]
-)";
+			,[UserId]
+			,[Date]
+			,[Type]
+			,[Amount]
+		FROM[Eernings]
+	)";
 	nanodbc::result queryResult = nanodbc::execute(conn, query);
 
 	std::vector <Earning> earnings;
@@ -42,7 +41,7 @@ std::vector<Earning> EarningService::readAll()
 		Earning earning;
 		earning.id = queryResult.get<int>("Id");
 		earning.userId = queryResult.get<int>("UserId");
-		earning.earningsDate = queryResult.get<nanodbc::timestamp>("EarningsDate");
+		earning.date = queryResult.get<nanodbc::timestamp>("Date");
 		earning.type = queryResult.get<std::string>("Type");
 		earning.amount = queryResult.get<double>("Amount");
 
@@ -74,7 +73,7 @@ std::vector<Earning> EarningService::readByUserId(int userId)
 		Earning earning;
 		earning.id = queryResult.get<int>("Id");
 		earning.userId = queryResult.get<int>("UserId");
-		earning.earningsDate = queryResult.get<nanodbc::timestamp>("EarningsDate");
+		earning.date = queryResult.get<nanodbc::timestamp>("Date");
 		earning.type = queryResult.get<std::string>("Type");
 		earning.amount = queryResult.get<double>("Amount");
 
@@ -83,7 +82,7 @@ std::vector<Earning> EarningService::readByUserId(int userId)
 	return earnings;
 }
 
-Earning* EarningService::read(int userId) 
+Earning* EarningService::read(int id)
 {
 	std::string query = R"(
 		SELECT [Id]
@@ -92,12 +91,12 @@ Earning* EarningService::read(int userId)
               ,[Type]
               ,[Amount]
         FROM [Earnings]
-        WHERE [UserId] = ?
+        WHERE [Id] = ?
 	)";
 
 	nanodbc::statement select(conn);
 	nanodbc::prepare(select, query);
-	select.bind(0, &userId);
+	select.bind(0, &id);
 
 	nanodbc::result queryResult = nanodbc::execute(select);
 	if (queryResult.next())
@@ -105,8 +104,8 @@ Earning* EarningService::read(int userId)
 		Earning* earning = new Earning();
 		earning->id = queryResult.get<int>("Id");
 		earning->userId = queryResult.get<int>("UserId");
-		earning->earningsDate = queryResult.get<nanodbc::timestamp>("PaymentTo");
-		earning->type = queryResult.get<std::string>("PaymentDate");
+		earning->date = queryResult.get<nanodbc::timestamp>("Date");
+		earning->type = queryResult.get<std::string>("Type");
 		earning->amount = queryResult.get<double>("Amount");
 
 		return earning;
@@ -117,10 +116,10 @@ Earning* EarningService::read(int userId)
 	}
 }
 
-bool EarningService::update(int id, Earning updatedPayment)
+bool EarningService::update(int id, Earning updatedEarning)
 {
 	std::string query = R"(
-        UPDATE [Payments]
+        UPDATE [Earnings]
         SET [UserId] = ?
            ,[Date] = ?
            ,[Type] = ?
@@ -131,12 +130,12 @@ bool EarningService::update(int id, Earning updatedPayment)
 	nanodbc::statement update(conn);
 	nanodbc::prepare(update, query);
 
-	update.bind(0, &updatedPayment.userId);
-	update.bind(1, &updatedPayment.earningsDate);
-	update.bind(2, updatedPayment.type.c_str());
-	update.bind(3, &updatedPayment.amount);
+	update.bind(0, &updatedEarning.userId);
+	update.bind(1, &updatedEarning.date);
+	update.bind(2, updatedEarning.type.c_str());
+	update.bind(3, &updatedEarning.amount);
+	update.bind(4, &id);
 
-	update.bind(6, &id);
 	nanodbc::execute(update);
 	return true;
 }

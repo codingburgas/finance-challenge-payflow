@@ -5,18 +5,23 @@ class EarningResponse {
 public:
 	int id;
 	int userId;
-	std::string earningsDate;
+	std::string date;
 	std::string type;
 	double amount;
 
-	EarningResponse(Earning a) : id(a.id), userId(a.userId), type(a.type), amount(a.amount)
+	EarningResponse(Earning e) : id(e.id), userId(e.userId), type(e.type), amount(e.amount)
 	{
-		earningsDate =
-			std::to_string(a.earningsDate.year) + "-" +
-			std::to_string(a.earningsDate.month) + "-" +
-			std::to_string(a.earningsDate.day) + " " +
-			std::to_string(a.earningsDate.hour) + ":" +
-			std::to_string(a.earningsDate.min) + ":" +
-			std::to_string(a.earningsDate.sec) + ":";
+		date =
+			std::to_string(e.date.year) + "-" +
+			std::to_string(e.date.month) + "-" +
+			std::to_string(e.date.day) + " " +
+			std::to_string(e.date.hour) + ":" +
+			std::to_string(e.date.min) + ":" +
+			std::to_string(e.date.sec) + ":";
 	}
+
+	EarningResponse(int id, int userId, std::string date, std::string type, double amount) :
+		id(id), userId(userId), date(date), type(type), amount(amount) {};
+
+	EarningResponse(){}
 };
