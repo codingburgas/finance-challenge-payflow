@@ -9,7 +9,7 @@ void to_json(nlohmann::json& j, const EarningRequest& e) {
     j = nlohmann::json{
         {"id", e.id },
         {"userId",e.userId},
-        {"earningsDate", e.date},
+        {"date", e.date},
         {"type", e.type},
         {"amount", e.amount},
     };
@@ -35,6 +35,7 @@ void to_json(nlohmann::json& j, const EarningResponse& e) {
 
 void from_json(const nlohmann::json& j, EarningResponse& e) {
     e.id = j["id"];
+    e.userId = j["userId"];
     e.date = j["date"];
     e.type = j["type"];
     e.amount = j["amount"];
@@ -147,6 +148,6 @@ void generateEarningEndpoints(crow::App<crow::CORSHandler>& app)
         EarningRequest earningRequest = requestBody.get<EarningRequest>();
         return updateEarning(id, earningRequest);
     });
-    CROW_ROUTE(app, "/api/earning/delete/<int>").methods("GET"_method)(deleteEarning);
+    CROW_ROUTE(app, "/api/earning/delete/<int>").methods("DELETE"_method)(deleteEarning);
 
 }

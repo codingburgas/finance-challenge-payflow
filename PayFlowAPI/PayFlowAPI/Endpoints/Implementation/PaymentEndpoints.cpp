@@ -156,5 +156,5 @@ void generatePaymentsEndpoints(crow::App<crow::CORSHandler>& app)
         PaymentRequest paymentRequest = requestBody.get<PaymentRequest>();
         return updatePayment(id, paymentRequest);
     });
-    CROW_ROUTE(app, "/api/payments/delete/<int>").methods("GET"_method)(deletePayment);
+    CROW_ROUTE(app, "/api/payments/delete/<int>").methods("DELETE"_method)(deletePayment);
 }
