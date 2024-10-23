@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="Endpoints\Implementation\BudgetEndpoints.cpp" />
     <ClCompile Include="Endpoints\Implementation\EarningEndpoints.cpp" />
+    <ClCompile Include="Endpoints\Implementation\ExpenseEndpoints.cpp" />
     <ClCompile Include="Endpoints\Implementation\PaymentEndpoints.cpp" />
     <ClCompile Include="Endpoints\Implementation\UserEndpoints.cpp" />
     <ClCompile Include="PayFlowAPI.cpp" />
     <ClCompile Include="Services\Implementation\BudgetService.cpp" />
     <ClCompile Include="Services\Implementation\EarningService.cpp" />
+    <ClCompile Include="Services\Implementation\ExpenseService.cpp" />
     <ClCompile Include="Services\Implementation\PaymentService.cpp" />
     <ClCompile Include="Services\Implementation\UserService.cpp" />
     <ClCompile Include="SetUp\Implementation\Endpoints.cpp" />
@@ -142,24 +144,29 @@
   <ItemGroup>
     <ClInclude Include="Endpoints\Headers\BudgetEndpoints.h" />
     <ClInclude Include="Endpoints\Headers\EarningEndpoints.h" />
+    <ClInclude Include="Endpoints\Headers\ExpenseEndpoints.h" />
     <ClInclude Include="Endpoints\Headers\PaymentEndpoints.h" />
     <ClInclude Include="Endpoints\Headers\UserEndpoints.h" />
     <ClInclude Include="Models\EntityModels\Budget.h" />
     <ClInclude Include="Models\EntityModels\Earning.h" />
+    <ClInclude Include="Models\EntityModels\Expense.h" />
     <ClInclude Include="Models\EntityModels\Payment.h" />
     <ClInclude Include="Models\EntityModels\User.h" />
     <ClInclude Include="Models\RequestModels\BudgetRequest.h" />
     <ClInclude Include="Models\RequestModels\EarningRequest.h" />
+    <ClInclude Include="Models\RequestModels\ExpenseRequest.h" />
     <ClInclude Include="Models\RequestModels\LogInRequest.h" />
     <ClInclude Include="Models\RequestModels\PaymentRequest.h" />
     <ClInclude Include="Models\RequestModels\RegisterRequest.h" />
     <ClInclude Include="Models\ResponseModels\BudgetResponse.h" />
     <ClInclude Include="Models\ResponseModels\EarningResponse.h" />
+    <ClInclude Include="Models\ResponseModels\ExpenseResponse.h" />
     <ClInclude Include="Models\ResponseModels\LogInResponse.h" />
     <ClInclude Include="Models\ResponseModels\PaymentResponse.h" />
     <ClInclude Include="Models\ResponseModels\RegisterResponse.h" />
     <ClInclude Include="Services\Headers\BudgetService.h" />
     <ClInclude Include="Services\Headers\EarningService.h" />
+    <ClInclude Include="Services\Headers\ExpenseService.h" />
     <ClInclude Include="Services\Headers\PaymentService.h" />
     <ClInclude Include="Services\Headers\UserService.h" />
     <ClInclude Include="SetUp\Headers\Endpoints.h" />
