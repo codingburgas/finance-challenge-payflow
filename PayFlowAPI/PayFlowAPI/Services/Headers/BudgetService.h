@@ -12,6 +12,6 @@ public:
 	std::vector<Budget> readAll();
 	std::vector<Budget> readByUserId(int userId);
 	Budget* read(int userId);
-	bool update(int id, Budget updatedEarning);
+	bool update(int id, Budget updatedBudget);
 	bool remove(int id);
 };

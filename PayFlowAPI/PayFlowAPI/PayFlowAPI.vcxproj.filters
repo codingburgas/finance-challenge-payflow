@@ -45,6 +45,9 @@
     <ClCompile Include="Endpoints\Implementation\BudgetEndpoints.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Services\Implementation\BudgetService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SetUp\Headers\SetUp.h">

@@ -132,6 +132,7 @@
     <ClCompile Include="Endpoints\Implementation\PaymentEndpoints.cpp" />
     <ClCompile Include="Endpoints\Implementation\UserEndpoints.cpp" />
     <ClCompile Include="PayFlowAPI.cpp" />
+    <ClCompile Include="Services\Implementation\BudgetService.cpp" />
     <ClCompile Include="Services\Implementation\EarningService.cpp" />
     <ClCompile Include="Services\Implementation\PaymentService.cpp" />
     <ClCompile Include="Services\Implementation\UserService.cpp" />
