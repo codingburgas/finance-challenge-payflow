@@ -36,6 +36,24 @@
     <ClCompile Include="Services\Implementation\UserService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Endpoints\Implementation\EarningEndpoints.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\Implementation\EarningService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Endpoints\Implementation\BudgetEndpoints.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\Implementation\BudgetService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Endpoints\Implementation\ExpenseEndpoints.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\Implementation\ExpenseService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SetUp\Headers\SetUp.h">
@@ -78,6 +96,51 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Models\ResponseModels\RegisterResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Endpoints\Headers\EarningEndpoints.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityModels\Earning.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\RequestModels\EarningRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\EarningResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\Headers\EarningService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Endpoints\Headers\BudgetEndpoints.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityModels\Budget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\RequestModels\BudgetRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\BudgetResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\Headers\BudgetService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Endpoints\Headers\ExpenseEndpoints.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityModels\Expense.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\RequestModels\ExpenseRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\ExpenseResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\Headers\ExpenseService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

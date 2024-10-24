@@ -1,6 +1,9 @@
 #include "../Headers/Endpoints.h"
 #include "..\..\Endpoints\Headers\PaymentEndpoints.h"
 #include "..\..\Endpoints\Headers\UserEndpoints.h"
+#include "../../Endpoints/Headers/EarningEndpoints.h"
+#include "../../Endpoints/Headers/BudgetEndpoints.h"
+#include "../../Endpoints/Headers/ExpenseEndpoints.h"
 
 void generateEndpoints(crow::App<crow::CORSHandler>& app)
 {
@@ -11,7 +14,9 @@ void generateEndpoints(crow::App<crow::CORSHandler>& app)
         return response;
     });
 
-    
+    generateExpenseEndpoints(app);
+    generateBudgetEndpoints(app);
+    generateEarningEndpoints(app);
     generateUsersEndpoints(app);
     generatePaymentsEndpoints(app);
 }
