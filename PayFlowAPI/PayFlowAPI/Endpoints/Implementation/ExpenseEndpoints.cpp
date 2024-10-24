@@ -61,7 +61,7 @@ crow::response getExpense(int id)
     return response;
 }
 
-crow::response getExpensesByUser(int userId)
+crow::response getExpensesByUser(int userId, int year, int month)
 {
     crow::response response;
     nlohmann::json responseBody;
@@ -69,7 +69,7 @@ crow::response getExpensesByUser(int userId)
     ExpenseService service;
     service.conn = setUpConnection();
 
-    std::vector<Expense> earning = service.readByUserId(userId);
+    std::vector<Expense> earning = service.readByUserId(userId, year, month);
     service.conn.disconnect();
 
     std::vector<ExpenseResponse> expenseResponse;
@@ -137,7 +137,7 @@ crow::response deleteExpense(int id)
 void generateExpenseEndpoints(crow::App<crow::CORSHandler>& app)
 {
     CROW_ROUTE(app, "/api/expense/get/<int>").methods("GET"_method)(getExpense);
-    CROW_ROUTE(app, "/api/expense/getByUser/<int>").methods("GET"_method)(getExpensesByUser);
+    CROW_ROUTE(app, "/api/expense/getByUser/<int>/<int>/<int>").methods("GET"_method)(getExpensesByUser);
     CROW_ROUTE(app, "/api/expense/add").methods("POST"_method)([](const crow::request& request) {
         nlohmann::json requestBody = nlohmann::json::parse(request.body);
         ExpenseRequest expenseRequest = requestBody.get<ExpenseRequest>();

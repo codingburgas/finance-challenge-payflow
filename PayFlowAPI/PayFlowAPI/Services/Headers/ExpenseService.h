@@ -10,7 +10,7 @@ public:
 	nanodbc::connection conn;
 	bool create(Expense newExpense);
 	std::vector<Expense> readAll();
-	std::vector<Expense> readByUserId(int userId);
+	std::vector<Expense> readByUserId(int userId, int year, int month);
 	Expense* read(int userId);
 	bool update(int id, Expense updatedExpense);
 	bool remove(int id);
