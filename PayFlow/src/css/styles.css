@@ -1,6 +1,16 @@
 body{
-    background: linear-gradient(to bottom right, #030d49 40%, #05177c 80%);
-    height: 100vh;
-    margin: 0;
+    background:  rgba(243, 223, 251, 1);
+   
+    
+    
 }
-
+.square{
+    height:700px;
+    width: 550px;
+   display:flex;
+   background-image: linear-gradient(to right, rgb(190, 163, 203), rgb(130, 102, 149), rgb(77, 66, 85));
+   border-radius: 14.5%;
+   margin-left:100px;
+   filter: blur(4px);
+   
+}
