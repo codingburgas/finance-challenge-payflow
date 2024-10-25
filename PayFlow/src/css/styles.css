@@ -11,6 +11,26 @@ body{
    background-image: linear-gradient(to right, rgb(190, 163, 203), rgb(130, 102, 149), rgb(77, 66, 85));
    border-radius: 14.5%;
    margin-left:100px;
-   filter: blur(4px);
+   position:absolute;
+
    
 }
+
+.CreateAnAccountLabel{
+    border-radius: 60px;
+  background-color:rgb(212, 173, 212);
+  padding: 20px; 
+  width: 300px;
+  height: 30px;  
+  margin-left:100px;
+  border: 3.5px solid rgb(128, 95, 128);
+  font-size:30px;
+  color:white;
+  text-align: center;
+  font-family: "KoHo", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+
+
