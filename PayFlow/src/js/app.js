@@ -1,7 +1,7 @@
 import axios from 'axios';
 const apiURL = 'http://localhost:18080/api/';
 let userId = -1;
-
+ 
 document.getElementById('fetchButton').addEventListener('click', ()=>
 {
     getAllPayments();
