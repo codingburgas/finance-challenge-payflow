@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8e1ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.sidebar {
+    width: 200px;
+    background-color: #f0d1ff;
+    height: 100vh;
+    padding: 20px;
+}
+.sidebar-item {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.sidebar-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background-color: #d4a6ff;
+    border-radius: 50%;
+}
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #d4a6ff;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.card-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.card {
+    background: linear-gradient(135deg, #e6b8ff, #c77dff);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    color: white;
+}
+.card-number {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.card-details {
+    display: flex;
+    justify-content: space-between;
+}
+.card-logo {
+    width: 50px;
+    height: 30px;
+    background-color: white;
+    border-radius: 5px;
+}
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.action-icon {
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+.expenses {
+    background-color: #f0d1ff;
+    border-radius: 10px;
+    padding: 20px;
+}
+.expense-item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.expense-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #d4a6ff;
+    border-radius: 50%;
+    margin-right: 10px;
+}
