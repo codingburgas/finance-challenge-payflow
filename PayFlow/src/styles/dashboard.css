@@ -1,14 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8e1ff;
+#dashboard {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .sidebar {
@@ -33,12 +25,24 @@ body {
   margin-right: 1rem;
 }
 
+.logo h1 {
+  font-size: 24px;
+  color: #333;
+}
+
 .nav-item {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
   color: #333;
   text-decoration: none;
+  padding: 10px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+  background-color: #e6b8ff;
 }
 
 .nav-icon {
@@ -51,13 +55,16 @@ body {
 
 .settings-image {
   width: 100%;
-  height: auto;
+  height: 100px;
+  background-color: #d4a6ff;
+  border-radius: 10px;
   margin-top: auto;
 }
 
 .main-content {
   flex-grow: 1;
   padding: 2rem;
+  background-color: #fff;
 }
 
 .header {
@@ -118,6 +125,11 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.transaction-info {
+  display: flex;
+  align-items: center;
+}
+
 .transaction-icon {
   width: 32px;
   height: 32px;
@@ -129,4 +141,41 @@ body {
 .welcome-message {
   font-size: 3rem;
   font-weight: bold;
+  color: #333;
+}
+
+.welcome-message h1:first-child {
+  font-size: 2rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  #dashboard {
+      flex-direction: column;
+  }
+
+  .sidebar {
+      width: 100%;
+      padding: 1rem;
+  }
+
+  .main-content {
+      padding: 1rem;
+  }
+
+  .dashboard-content {
+      flex-direction: column;
+  }
+
+  .card {
+      width: 100%;
+  }
+
+  .welcome-message {
+      font-size: 2rem;
+  }
+
+  .welcome-message h1:first-child {
+      font-size: 1.5rem;
+  }
 }
