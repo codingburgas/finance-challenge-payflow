@@ -1,51 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="../css/dashboard.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payflow Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-  <div class="dashboard">
-    <div class="sidebar">
-      <div class="brand">
-        <div class="logo-circle"></div>
-        <span>payflow</span>
-      </div>
-      <div class="profile">
-        <div class="profile-pic"></div>
-        <div class="profile-info">
-          <span class="name">Yoana Georgieva</span>
-          <span class="status">student</span>
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <h1>payflow</h1>
         </div>
-      </div>
-      <nav class="menu">
-        <a href="#"><i class="icon">🏠</i>Dashboard</a>
-        <a href="#"><i class="icon">💳</i>My cards</a>
-        <a href="#"><i class="icon">🔄</i>Transfer</a>
-        <a href="#"><i class="icon">💵</i>Payments</a>
-        <a href="#"><i class="icon">💰</i>Exchange</a>
-      </nav>
-      <div class="settings">
-        <i class="icon">⚙️</i>Settings
-      </div>
-    </div>
-    <div class="main-content">
-      <h1>Welcome, Yoana</h1>
-      <div class="card">
-        <div class="balance-card">
-          <div class="balance"></div>
-          <div class="toggle-switch"></div>
+        <nav>
+            <a href="#" class="nav-item"><div class="nav-icon"></div>Dashboard</a>
+            <a href="cards.html" class="nav-item"><div class="nav-icon"></div>My cards</a>
+            <a href="#" class="nav-item"><div class="nav-icon"></div>Transfer</a>
+            <a href="#" class="nav-item"><div class="nav-icon"></div>Payments</a>
+            <a href="#" class="nav-item"><div class="nav-icon"></div>Exchange</a>
+            <a href="#" class="nav-item"><div class="nav-icon"></div>Settings</a>
+        </nav>
+        <img src="/placeholder.svg?height=100&width=100" alt="Settings illustration" class="settings-image">
+    </aside>
+    <main class="main-content">
+        <header class="header">
+            <div class="logo-icon"></div>
+            <div class="user-profile">
+                <div class="user-avatar"></div>
+                <div>
+                    <h2>Yoana Georgieva</h2>
+                    <p>@yoana</p>
+                </div>
+            </div>
+        </header>
+        <div class="dashboard-content">
+            <div class="card">
+                <div class="credit-card">
+                    <div class="card-logo"></div>
+                </div>
+                <h3>Recent Transactions</h3>
+                <div class="transaction">
+                    <div style="display: flex; align-items: center;">
+                        <div class="transaction-icon"></div>
+                        <span>Spotify</span>
+                    </div>
+                    <span>16.99lv</span>
+                </div>
+                <div class="transaction">
+                    <div style="display: flex; align-items: center;">
+                        <div class="transaction-icon"></div>
+                        <span>Netflix</span>
+                    </div>
+                    <span>20.00lv</span>
+                </div>
+                <div class="transaction">
+                    <div style="display: flex; align-items: center;">
+                        <div class="transaction-icon"></div>
+                        <span>Lidl</span>
+                    </div>
+                    <span>60.00lv</span>
+                </div>
+            </div>
+            <div>
+                <h1 class="welcome-message">Welcome,</h1>
+                <h1 class="welcome-message">Yoana</h1>
+            </div>
         </div>
-        <h2>Recent Transactions</h2>
-        <ul class="transactions">
-          <li><span class="icon">🎵</span>Spotify <span class="amount">16.99lv</span></li>
-          <li><span class="icon">🎥</span>Netflix <span class="amount">20.00lv</span></li>
-          <li><span class="icon">🛒</span>Lidl <span class="amount">60.00lv</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    </main>
 </body>
 </html>
