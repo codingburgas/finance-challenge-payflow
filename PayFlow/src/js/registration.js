@@ -2,6 +2,7 @@ import { config } from "./app";
 import axios from 'axios';
 
 document.getElementById('registerForm').addEventListener('submit', (event)=>{
+    debugger;
     event.preventDefault();
     const formData = new FormData(event.target);
     const formJSON = Object.fromEntries(formData.entries());
@@ -17,6 +18,8 @@ function register(body)
         {
             if(response != null)
             {
+             debugger;
+
                 console.log(response.data);
                 if(response.data.userId != -1)
                 {

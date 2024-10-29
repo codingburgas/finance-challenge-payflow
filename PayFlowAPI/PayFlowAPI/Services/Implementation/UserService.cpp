@@ -6,9 +6,10 @@ bool UserService::create(User newuser)
 		INSERT INTO [Users]
            ([UserName]
            ,[Password]
-		   ,[Email])
+		   ,[Email]
+		   ,[TotalMoney])
 		VALUES
-           (?, ?, ?)
+           (?, ?, ?, ?)
 	)";
 
 	nanodbc::statement create(conn);
@@ -17,6 +18,8 @@ bool UserService::create(User newuser)
 	create.bind(0, newuser.userName.c_str());
 	create.bind(1, newuser.password.c_str());
 	create.bind(2, newuser.email.c_str());
+	int totalMoney = 0;
+	create.bind(3, &totalMoney);
 
 	nanodbc::execute(create);
 
