@@ -2,6 +2,7 @@
 #include "..\..\Models\RequestModels\LogInRequest.h"
 #include "..\..\Models\ResponseModels\LogInResponse.h"
 #include "..\..\Models\ResponseModels\RegisterResponse.h"
+#include "..\..\Models\ResponseModels/UserDataResponse.h"
 #include "..\..\Services\Headers\UserService.h"
 #include "..\..\SetUp\Headers\SetUp.h"
 #include "..\..\Models\RequestModels\RegisterRequest.h"
@@ -53,6 +54,20 @@ void to_json(nlohmann::json& j, const RegisterResponse& e) {
 
 void from_json(const nlohmann::json& j, RegisterResponse& e) {
     e.userId = j["userId"];
+}
+
+void to_json(nlohmann::json& j, const UserDataResponse& e) {
+    j = nlohmann::json{
+        {"userName",e.userName},
+        {"email",e.email},
+        {"totalMoney",e.totalMoney},
+    };
+}
+
+void from_json(const nlohmann::json& j, UserDataResponse& e) {
+    e.userName = j["userName"];
+    e.email = j["email"];
+    e.totalMoney = j["totalMoney"];
 }
 
 crow::response logIn(LogInRequest logInRequest)
@@ -110,6 +125,27 @@ crow::response registerUser(RegisterRequest registerRequest)
     return response;
 }
 
+crow::response getUserName(int userId)
+{
+    crow::response response;
+    nlohmann::json responseBody;
+
+    UserService service;
+    service.conn = setUpConnection();
+
+    UserDataResponse* userData = service.getUserData(userId);
+    service.conn.disconnect();
+
+    if (userData != nullptr)
+    {
+        responseBody = *userData;
+    }
+
+    delete userData;
+    formatResponse(response, responseBody);
+    return response;
+}
+
 void generateUsersEndpoints(crow::App<crow::CORSHandler>& app)
 {
     CROW_ROUTE(app, "/api/user/logIn").methods("POST"_method)([](const crow::request& request) {
@@ -124,4 +160,5 @@ void generateUsersEndpoints(crow::App<crow::CORSHandler>& app)
 
         return registerUser(registerRequst);
     });
+    CROW_ROUTE(app, "/api/user/getUserName/<int>").methods("GET"_method)(getUserName);
 }

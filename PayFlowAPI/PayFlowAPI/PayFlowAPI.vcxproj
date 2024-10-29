@@ -168,6 +168,7 @@
     <ClInclude Include="Models\ResponseModels\LogInResponse.h" />
     <ClInclude Include="Models\ResponseModels\PaymentResponse.h" />
     <ClInclude Include="Models\ResponseModels\RegisterResponse.h" />
+    <ClInclude Include="Models\ResponseModels\UserDataResponse.h" />
     <ClInclude Include="Services\Headers\BudgetService.h" />
     <ClInclude Include="Services\Headers\EarningService.h" />
     <ClInclude Include="Services\Headers\ExpenseService.h" />

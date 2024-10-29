@@ -158,5 +158,8 @@
     <ClInclude Include="Services\Headers\GraphService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Models\ResponseModels\UserDataResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "..\Headers\UserService.h"
 
-bool UserService::create(User user)
+bool UserService::create(User newuser)
 {
 	std::string query = R"(
 		INSERT INTO [Users]
@@ -14,9 +14,9 @@ bool UserService::create(User user)
 	nanodbc::statement create(conn);
 	nanodbc::prepare(create, query);
 
-	create.bind(0, user.userName.c_str());
-	create.bind(1, user.password.c_str());
-	create.bind(2, user.email.c_str());
+	create.bind(0, newuser.userName.c_str());
+	create.bind(1, newuser.password.c_str());
+	create.bind(2, newuser.email.c_str());
 
 	nanodbc::execute(create);
 
@@ -48,4 +48,36 @@ int* UserService::readUserIdByUserNameAndPassword(User user)
 	{
 		return nullptr;
 	}
+}
+
+UserDataResponse* UserService::getUserData(int userId)
+{
+	std::string query = R"(
+		SELECT [UserName]
+              ,[Email]
+              ,[Totalmoney]
+        FROM [Users]
+        WHERE [Id] = ?
+	)";
+
+	nanodbc::statement select(conn);
+    nanodbc::prepare(select, query);
+
+    select.bind(0, &userId);
+
+	nanodbc::result result = select.execute();
+
+	if (result.next())
+	{
+		UserDataResponse* response = new UserDataResponse();
+		response->userName = result.get<std::string>("UserName");
+		response->email = result.get<std::string>("Email");
+		response->totalMoney = result.get<double>("Totalmoney");
+		return response;
+	}
+	else
+	{
+		return nullptr;
+	}
+
 }
