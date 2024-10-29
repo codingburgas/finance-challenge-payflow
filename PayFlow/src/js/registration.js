@@ -1,5 +1,6 @@
-import { config } from "./app";
 import axios from 'axios';
+const apiURL = 'http://localhost:18080/api/'
+
 
 document.getElementById('registerForm').addEventListener('submit', (event)=>{
     debugger;
@@ -12,19 +13,18 @@ document.getElementById('registerForm').addEventListener('submit', (event)=>{
 
 function register(body)
 {
-    axios.post(config.apiURL + `user/register`, body)
+    axios.post(apiURL + `user/register`, body)
     .then(function (response) {
         if(response.status == 200)
         {
             if(response != null)
             {
-             debugger;
 
                 console.log(response.data);
                 if(response.data.userId != -1)
                 {
-                    sessionStorage.setItem('userId', response.data.userId);
-                    window.location.href = '../html/dashboard.html';
+                    localStorage.setItem('userId', response.data.userId);
+                    location.replace('html/dashboard.html');
                 }
                 else
                 {

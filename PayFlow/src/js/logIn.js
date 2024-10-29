@@ -1,5 +1,12 @@
-import { config } from "./app";
 import axios from 'axios';
+const apiURL = 'http://localhost:18080/api/'
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    if(localStorage.getItem('userId') != -1)
+    {
+        location.replace('html/dashboard.html');
+    }
+});
 
 document.getElementById('logInForm').addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -10,16 +17,18 @@ document.getElementById('logInForm').addEventListener('submit', (event)=>{
 
 function logIn(body)
 {
-    axios.post(config.apiURL + `user/logIn`, body)
+    axios.post(apiURL + `user/logIn`, body)
     .then(function (response) {
         if(response.status == 200)
         {
+            debugger;
+
             if(response != null)
             {
                 console.log(response.data);
                 if(response.data.userId != -1)
                 {
-                    sessionStorage.setItem('userId', response.data.userId);
+                    localStorage.setItem('userId', response.data.userId);
                     location.replace('html/dashboard.html');
                 }
                 else

@@ -125,7 +125,7 @@ crow::response registerUser(RegisterRequest registerRequest)
     return response;
 }
 
-crow::response getUserName(int userId)
+crow::response getUserData(int userId)
 {
     crow::response response;
     nlohmann::json responseBody;
@@ -160,5 +160,5 @@ void generateUsersEndpoints(crow::App<crow::CORSHandler>& app)
 
         return registerUser(registerRequst);
     });
-    CROW_ROUTE(app, "/api/user/getUserName/<int>").methods("GET"_method)(getUserName);
+    CROW_ROUTE(app, "/api/user/getUserData/<int>").methods("GET"_method)(getUserData);
 }

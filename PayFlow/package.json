@@ -4,7 +4,7 @@
   "description": "bank system",
   "source": "src/index.html",
   "scripts": {
-    "reset": "rmdir /S /Q .parcel-cache && parcel serve src/index.html",
+    "reset": "rmdir /S /Q .parcel-cache && rmdir /S /Q dist && parcel serve src/index.html",
     "start": "parcel serve src/index.html"
   },
   "author": "",
