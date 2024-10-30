@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,8 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
     <script type="module" src="../js/dashboard.js" defer></script>
-
 </head>
+
 <body>
     <div id="dashboard">
         <aside class="sidebar">
@@ -17,18 +18,29 @@
                 <h1>payflow</h1>
             </div>
             <nav>
-                <a href="#" class="nav-item active"><div class="nav-icon"></div>Dashboard</a>
-                <a href="#" class="nav-item"><div class="nav-icon"></div>My cards</a>
-                <a href="#" class="nav-item"><div class="nav-icon"></div>Transfer</a>
-                <a href="#" class="nav-item"><div class="nav-icon"></div>Payments</a>
-                <a href="#" class="nav-item"><div class="nav-icon"></div>Exchange</a>
-                <a href="#" class="nav-item"><div class="nav-icon"></div>Settings</a>
+                <a href="#" class="nav-item active">
+                    <div class="nav-icon1"></div>Dashboard
+                </a>
+                <a href="cards.html" class="nav-item">
+                    <div class="nav-icon2"></div>My cards
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon3"></div>Transfer
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon4"></div>Payments
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon5"></div>Exchange
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon6"></div>Settings
+                </a>
             </nav>
-            <div class="settings-image"></div>
+            <img class="cards" src="../img/cards.png">
         </aside>
         <main class="main-content">
             <header class="header">
-                <div class="logo-icon"></div>
                 <div class="user-profile">
                     <div class="user-avatar"></div>
                     <div>
@@ -38,39 +50,28 @@
                 </div>
             </header>
             <div class="dashboard-content">
-                <div class="card">
-                    <div class="credit-card">
-                        <div class="card-logo"></div>
-                    </div>
-                    <h3>Recent Transactions</h3>
-                    <div class="transaction">
-                        <div class="transaction-info">
-                            <div class="transaction-icon spotify"></div>
-                            <span>Spotify</span>
-                        </div>
-                        <span>16.99lv</span>
-                    </div>
-                    <div class="transaction">
-                        <div class="transaction-info">
-                            <div class="transaction-icon netflix"></div>
-                            <span>Netflix</span>
-                        </div>
-                        <span>20.00lv</span>
-                    </div>
-                    <div class="transaction">
-                        <div class="transaction-info">
-                            <div class="transaction-icon lidl"></div>
-                            <span>Lidl</span>
-                        </div>
-                        <span>60.00lv</span>
-                    </div>
-                </div>
                 <div class="welcome-message">
                     <h1>Welcome,</h1>
                     <h1 id="welcome-name">Yoana</h1>
+                    <h2>What is on your mind today?</h2>
+                </div>
+                <div class="quick-actions">
+                    <button class="action-button">
+                        <span class="action-icon transfer"></span>
+                        Transfer
+                    </button>
+                    <button class="action-button">
+                        <span class="action-icon pay"></span>
+                        Pay
+                    </button>
+                    <button class="action-button">
+                        <span class="action-icon topup"></span>
+                        Top Up
+                    </button>
                 </div>
             </div>
         </main>
     </div>
 </body>
+
 </html>
