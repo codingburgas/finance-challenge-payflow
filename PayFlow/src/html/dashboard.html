@@ -14,7 +14,7 @@
         <aside class="sidebar">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <h1>payflow</h1>
+                <h1>PayFlow</h1>
             </div>
             <nav>
                 <a href="#" class="nav-item active"><div class="nav-icon"></div>Dashboard</a>
@@ -28,21 +28,19 @@
         </aside>
         <main class="main-content">
             <header class="header">
-                <div class="logo-icon"></div>
+
                 <div class="user-profile">
                     <div class="user-avatar"></div>
-                    <div>
-                        <h2 id="userName">Yoana Georgieva</h2>
-                        <p id="userStatus">student</p>
-                    </div>
+                    <h2 class="userName" id="userName">Welcome, </h2>
+                    <p class="welcome-name" id="welcome-name"></p>
                 </div>
             </header>
             <div class="dashboard-content">
-                <div class="card">
+                <div class="card" id="earnings-card">
                     <div class="credit-card">
                         <div class="card-logo"></div>
                     </div>
-                    <h3>Recent Transactions</h3>
+                    <h3>Recent Earnings</h3>
                     <div class="transaction">
                         <div class="transaction-info">
                             <div class="transaction-icon spotify"></div>
@@ -65,9 +63,11 @@
                         <span>60.00lv</span>
                     </div>
                 </div>
-                <div class="welcome-message">
-                    <h1>Welcome,</h1>
-                    <h1 id="welcome-name">Yoana</h1>
+                <div class="card" id="expenses-card">
+                    <div class="credit-card">
+                        <div class="card-logo"></div>
+                    </div>
+                    <h3>Recent Expenses</h3>
                 </div>
             </div>
         </main>

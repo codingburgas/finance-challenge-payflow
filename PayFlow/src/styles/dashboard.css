@@ -96,7 +96,7 @@
   background-color: white;
   border-radius: 20px;
   padding: 1.5rem;
-  width: 300px;
+  width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -138,15 +138,15 @@
   margin-right: 0.5rem;
 }
 
-.welcome-message {
+.welcome-name {
   font-size: 3rem;
   font-weight: bold;
-  color: #333;
+  color: grey;
+  font-family: cursive;
 }
-
-.welcome-message h1:first-child {
-  font-size: 2rem;
-  color: #666;
+.userName{
+  font-size: 3rem;
+  color: #333;
 }
 
 @media (max-width: 768px) {
@@ -164,18 +164,8 @@
   }
 
   .dashboard-content {
-      flex-direction: column;
-  }
-
-  .card {
-      width: 100%;
-  }
-
-  .welcome-message {
-      font-size: 2rem;
-  }
-
-  .welcome-message h1:first-child {
-      font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 }

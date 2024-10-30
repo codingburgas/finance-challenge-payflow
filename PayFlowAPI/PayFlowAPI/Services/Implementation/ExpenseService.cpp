@@ -158,3 +158,39 @@ bool ExpenseService::remove(int id)
 
 	return true;
 }
+
+std::vector<Expense> ExpenseService::readFixedAmountByUser(int userId, int count)
+{
+	std::string query = R"(
+		SELECT [Id]
+              ,[UserId]
+              ,[Date]
+              ,[Type]
+              ,[Amount]
+        FROM [Expenses]
+        WHERE [UserId] = ?
+		ORDER BY [Date]            
+		OFFSET 0 ROWS           
+		FETCH NEXT ? ROWS ONLY;
+	)";
+
+	nanodbc::statement select(conn);
+	nanodbc::prepare(select, query);
+	select.bind(0, &userId);
+	select.bind(1, &count);
+
+	nanodbc::result queryResult = nanodbc::execute(select);
+
+	std::vector <Expense> expenses;
+	while (queryResult.next()) {
+		Expense expense;
+		expense.id = queryResult.get<int>("Id");
+		expense.userId = queryResult.get<int>("UserId");
+		expense.date = queryResult.get<nanodbc::timestamp>("Date");
+		expense.type = queryResult.get<std::string>("Type");
+		expense.amount = queryResult.get<double>("Amount");
+
+		expenses.push_back(expense);
+	}
+	return expenses;
+}
