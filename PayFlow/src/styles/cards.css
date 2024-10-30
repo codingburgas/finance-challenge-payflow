@@ -1,75 +1,203 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
-    background-color: #f8e1ff;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
 }
 
-.container {
+#container {
     display: flex;
     min-height: 100vh;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: url("../img/cards.png");
+    background-color: #7e57c2;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    margin-right: 1rem;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+}
+
 .sidebar {
-    width: 250px;
-    background-color: #f0d1ff;
+    position: relative;
+    width: 280px;
+    background-color: #7e57c2a6;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-item {
     display: flex;
     align-items: center;
-    padding: 12px;
-    color: #333;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
     text-decoration: none;
-    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
-.nav-icon {
+.nav-item:hover,
+.nav-item.active {
+    background-color: #f0e6ff;
+    color: #7e57c2;
+}
+
+.nav-icon1 {
     width: 24px;
     height: 24px;
-    background-color: #d4a6ff;
-    border-radius: 50%;
-    margin-right: 12px;
+    border: solid 1px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: url("../img/home.png");
+    border-color: black;
+    background-size: 15px;
+    background-color: rgba(255, 255, 255, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav-icon2 {
+    width: 24px;
+    height: 24px;
+    border: solid 1px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: url("../img/wallet.png");
+    border-color: black;
+    background-size: 15px;
+    background-color: rgba(255, 255, 255, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav-icon3 {
+    width: 24px;
+    height: 24px;
+    border: solid 1px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: url("../img/refresh-cw.png");
+    border-color: black;
+    background-size: 15px;
+    background-color: rgba(255, 255, 255, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav-icon4 {
+    width: 24px;
+    height: 24px;
+    border: solid 1px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: url("../img/dollar.png");
+    border-color: black;
+    background-size: 15px;
+    background-color: rgba(255, 255, 255, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav-icon5 {
+    width: 24px;
+    height: 24px;
+    border: solid 1px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: url("../img/coins.png");
+    border-color: black;
+    background-size: 15px;
+    background-color: rgba(255, 255, 255, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav-icon6 {
+    width: 24px;
+    height: 24px;
+    border: solid 1px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: url("../img/bolt.png");
+    border-color: black;
+    background-size: 15px;
+    background-color: rgba(255, 255, 255, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cards {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80%;
 }
 
 .main-content {
-    flex: 1;
-    padding: 2rem;
+    flex-grow: 1;
+    padding: 3rem;
+    background-color: #7e57c27c;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 .user-profile {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    position: absolute;
+    padding: 10px;
+    right: 20px;
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.profile-avatar {
-    width: 40px;
-    height: 40px;
-    background-color: #d4a6ff;
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border: solid 1px;
+    border-color: black;
+    background: url("../img/user.png");
+    background-repeat: no-repeat;
+    background-color: #7e57c2c5;
+    background-position: center;
+    background-size: 30px;
     border-radius: 50%;
 }
 
-.user-info h2 {
-    font-size: 1.2rem;
+.user-profile h2 {
+    font-size: 1.1rem;
     color: #333;
+    font-weight: 600;
 }
 
-.user-info p {
-    color: #666;
+.user-profile p {
     font-size: 0.9rem;
+    color: #666;
 }
 
 .cards-container {
@@ -133,11 +261,40 @@ body {
     font-size: 0.8rem;
 }
 
-.control-icon {
+.control-icon1 {
     width: 40px;
     height: 40px;
-    background-color: #f0d1ff;
+    background: url("../img/eye.png");
     border-radius: 50%;
+    background-position: center;
+    background-color: #f0d1ff;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-icon2 {
+    width: 40px;
+    height: 40px;
+    background: url("../img/snowflake.png");
+    border-radius: 50%;
+    background-position: center;
+    background-color: #f0d1ff;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-icon3 {
+    width: 40px;
+    height: 40px;
+    background: url("../img/sliders-horizontal.png");
+    border-radius: 50%;
+    background-position: center;
+    background-color: #f0d1ff;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,6 +328,9 @@ body {
 .expense-icon {
     width: 40px;
     height: 40px;
+    background: url("../img/shopping-cart.png");
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: #f0d1ff;
     border-radius: 50%;
 }

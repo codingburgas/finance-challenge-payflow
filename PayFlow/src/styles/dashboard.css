@@ -165,15 +165,6 @@ body {
   margin-bottom: 4rem;
 }
 
-.search-bar input {
-  padding: 10px 20px;
-  border: none;
-  background-color: #f0f0f0;
-  border-radius: 20px;
-  font-size: 14px;
-  width: 250px;
-}
-
 .user-profile {
   background-color: #f0f0f0;
   border-radius: 20px;
