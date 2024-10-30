@@ -155,3 +155,39 @@ bool EarningService::remove(int id)
 
 	return true;
 }
+
+std::vector<Earning> EarningService::readFixedAmountByUser(int userId, int count)
+{
+	std::string query = R"(
+		SELECT [Id]
+              ,[UserId]
+              ,[Date]
+              ,[Type]
+              ,[Amount]
+        FROM [Earnings]
+        WHERE [UserId] = ?
+		ORDER BY [Date]            
+		OFFSET 0 ROWS           
+		FETCH NEXT ? ROWS ONLY;
+	)";
+
+	nanodbc::statement select(conn);
+	nanodbc::prepare(select, query);
+	select.bind(0, &userId);
+	select.bind(1, &count);
+
+	nanodbc::result queryResult = nanodbc::execute(select);
+
+	std::vector <Earning> earnings;
+	while (queryResult.next()) {
+		Earning earning;
+		earning.id = queryResult.get<int>("Id");
+		earning.userId = queryResult.get<int>("UserId");
+		earning.date = queryResult.get<nanodbc::timestamp>("Date");
+		earning.type = queryResult.get<std::string>("Type");
+		earning.amount = queryResult.get<double>("Amount");
+
+		earnings.push_back(earning);
+	}
+	return earnings;
+}

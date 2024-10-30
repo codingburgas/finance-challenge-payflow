@@ -134,10 +134,36 @@ crow::response deleteEarning(int id)
     return response;
 }
 
+crow::response getFixedAmountEarningByUser(int userId, int count) {
+
+    crow::response response;
+    nlohmann::json responseBody;
+
+    EarningService service;
+    service.conn = setUpConnection();
+
+    std::vector<Earning> earning = service.readFixedAmountByUser(userId, count);
+    service.conn.disconnect();
+
+    std::vector<EarningResponse> earningResponse;
+    for (size_t i = 0; i < earning.size(); i++)
+    {
+        earningResponse.push_back(earning[i]);
+    }
+
+    if (earningResponse.size() > 0)
+    {
+        responseBody = earningResponse;
+    }
+    formatResponse(response, responseBody);
+    return response;
+}
+
 void generateEarningEndpoints(crow::App<crow::CORSHandler>& app)
 {
     CROW_ROUTE(app, "/api/earning/get/<int>").methods("GET"_method)(getEarning);
     CROW_ROUTE(app, "/api/earning/getByUser/<int>").methods("GET"_method)(getEarningsByUser);
+    CROW_ROUTE(app, "/api/earning/getFixedByUser/<int>/<int>").methods("GET"_method)(getFixedAmountEarningByUser);
     CROW_ROUTE(app, "/api/earning/add").methods("POST"_method)([](const crow::request& request) {
         nlohmann::json requestBody = nlohmann::json::parse(request.body);
         EarningRequest earningRequest = requestBody.get<EarningRequest>();

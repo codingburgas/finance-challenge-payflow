@@ -11,6 +11,7 @@ public:
 	bool create(Earning newEarning);
 	std::vector<Earning> readAll();
 	std::vector<Earning> readByUserId(int userId);
+	std::vector<Earning> readFixedAmountByUser(int userId, int count);
 	Earning* read(int userId);
 	bool update(int id, Earning updatedEarning);
 	bool remove(int id);
