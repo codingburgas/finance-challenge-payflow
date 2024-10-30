@@ -3,73 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banking UI</title>
-    <link rel="stylesheet" href="../css/cards.css">
+    <title>Card Display</title>
+    <link rel="stylesheet" href="../styles/cards.css">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-item"><div class="sidebar-icon"></div>Dashboard</div>
-        <div class="sidebar-item"><div class="sidebar-icon"></div>My cards</div>
-        <div class="sidebar-item"><div class="sidebar-icon"></div>Transfer</div>
-        <div class="sidebar-item"><div class="sidebar-icon"></div>Payments</div>
-        <div class="sidebar-item"><div class="sidebar-icon"></div>Exchange</div>
-        <div class="sidebar-item"><div class="sidebar-icon"></div>Settings</div>
-    </div>
-    <div class="main-content">
-        <div class="user-profile">
-            <div class="user-avatar"></div>
-            <div>
-                <div>Yoana Georgieva</div>
-                <div style="color: #888;">@yoana</div>
-            </div>
-        </div>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-number">..5678</div>
-                <div class="card-details">
-                    <div>
-                        <div>Card holder</div>
-                        <div>Yoana Georgieva</div>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon"></div>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon"></div>
+                    My cards
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon"></div>
+                    Transfer
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon"></div>
+                    Payments
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon"></div>
+                    Exchange
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon"></div>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div class="profile-avatar"></div>
+                <div class="user-profile">
+                    <div class="profile-avatar"></div>
+                    <div class="user-info">
+                        <h2>Yoana Georgieva</h2>
+                        <p>student</p>
                     </div>
-                    <div class="card-logo"></div>
                 </div>
-                <div class="card-actions">
-                    <div class="action-icon"></div>
-                    <div class="action-icon"></div>
-                    <div class="action-icon"></div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-number">1234 5678 9101 0012</div>
-                <div class="card-details">
-                    <div>
-                        <div>Expiry date</div>
-                        <div>09/2026</div>
+            </header>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="credit-card">
+                        <div class="card-number">..5678</div>
+                        <div class="card-details">
+                            <div class="mastercard-logo"></div>
+                        </div>
                     </div>
-                    <div>
-                        <div>CVV</div>
-                        <div>223</div>
+                    <div class="card-controls">
+                        <a href="#" class="control-button">
+                            <div class="control-icon"></div>
+                            Show details
+                        </a>
+                        <a href="#" class="control-button">
+                            <div class="control-icon"></div>
+                            Freeze
+                        </a>
+                        <a href="#" class="control-button">
+                            <div class="control-icon"></div>
+                            Controls
+                        </a>
                     </div>
-                    <div class="card-logo"></div>
                 </div>
-                <div class="card-actions">
-                    <div class="action-icon"></div>
-                    <div class="action-icon"></div>
-                    <div class="action-icon"></div>
+                <div class="card">
+                    <div class="credit-card">
+                        <div class="card-number">1234 5678 9101 0012</div>
+                        <div class="card-details">
+                            <div>
+                                <div>Expiry date</div>
+                                <div>9/2029</div>
+                            </div>
+                            <div>
+                                <div>CVV</div>
+                                <div>223</div>
+                            </div>
+                            <div class="mastercard-logo"></div>
+                        </div>
+                    </div>
+                    <div class="card-controls">
+                        <a href="#" class="control-button">
+                            <div class="control-icon"></div>
+                            Show details
+                        </a>
+                        <a href="#" class="control-button">
+                            <div class="control-icon"></div>
+                            Freeze
+                        </a>
+                        <a href="#" class="control-button">
+                            <div class="control-icon"></div>
+                            Controls
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="expenses">
-            <h2>Expenses</h2>
-            <div class="expense-item">
-                <div class="expense-icon"></div>
-                <div>
-                    <div>Shopping</div>
-                    <div style="color: #888;">2h ago</div>
+            <div class="expenses">
+                <h3>Expenses</h3>
+                <div class="expense-item">
+                    <div class="expense-info">
+                        <div class="expense-icon"></div>
+                        <span>Shopping</span>
+                    </div>
+                    <span>5 BGN</span>
                 </div>
-                <div style="margin-left: auto;">-$400</div>
             </div>
-        </div>
+        </main>
     </div>
 </body>
 </html>
