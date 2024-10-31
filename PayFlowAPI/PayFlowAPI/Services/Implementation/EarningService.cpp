@@ -60,6 +60,7 @@ std::vector<Earning> EarningService::readByUserId(int userId)
               ,[Amount]
         FROM [Earnings]
         WHERE [UserId] = ?
+		ORDER BY [Date] DESC
 	)";
 
 	nanodbc::statement select(conn);

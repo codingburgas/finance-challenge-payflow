@@ -60,7 +60,8 @@ std::vector<Expense> ExpenseService::readByUserId(int userId, int year, int mont
               ,[Amount]
         FROM [Expenses]
         WHERE [UserId] = ? AND
-			YEAR([Date]) = ? AND MONTH([Date]) = ?
+		YEAR([Date]) = ? AND MONTH([Date]) = ?
+		ORDER BY [Date] DESC
 	)";
 
 	nanodbc::statement select(conn);

@@ -2,11 +2,13 @@ import axios from 'axios';
 const apiURL = 'http://localhost:18080/api/'
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    if(localStorage.getItem('userId') != -1)
+    let userId = localStorage.getItem('userId'); 
+    if(userId  != -1 && userId  != null && userId  != undefined && userId != "undefined") 
     {
         location.replace('html/dashboard.html');
     }
 });
+
 
 document.getElementById('logInForm').addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -19,7 +21,7 @@ function logIn(body)
 {
     axios.post(apiURL + `user/logIn`, body)
     .then(function (response) {
-        if(response.status == 200)
+        if(response.status == 200 || response.status == 204)
         {
             debugger;
  

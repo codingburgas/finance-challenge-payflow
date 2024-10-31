@@ -14,10 +14,7 @@ public:
 		date =
 			std::to_string(e.date.year) + "-" +
 			std::to_string(e.date.month) + "-" +
-			std::to_string(e.date.day) + " " +
-			std::to_string(e.date.hour) + ":" +
-			std::to_string(e.date.min) + ":" +
-			std::to_string(e.date.sec) + ":";
+			std::to_string(e.date.day);
 	}
 
 	ExpenseResponse(int id, int userId, std::string date, std::string type, double amount) :

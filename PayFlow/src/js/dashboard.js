@@ -1,6 +1,14 @@
 import axios from 'axios';
 const apiURL = 'http://localhost:18080/api/'
 
+document.addEventListener("DOMContentLoaded", (event) => {
+    let userId = localStorage.getItem('userId'); 
+    if(userId == -1 || userId == null || userId == undefined || userId == "undefined")
+    {
+        location.replace('../index.html');
+    }
+});
+
 initData();
 
 function initData()
