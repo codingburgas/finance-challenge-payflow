@@ -8,7 +8,7 @@ function initData()
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth() + 1;
-    getExpenses(currentYear, currentMonth)
+    getExpenses(currentYear, currentMonth);
 }
 
 
@@ -17,7 +17,7 @@ document.getElementById('expenseForm').addEventListener('submit', (event)=>{
     event.preventDefault();
     const formData = new FormData(event.target);
     const formJSON = Object.fromEntries(formData.entries());
-    getExpenses(formJSON.year, formJSON.month);
+    createExpense(formJSON.year, formJSON.month);
 });
 
 function getExpenses(year, month)
@@ -26,7 +26,6 @@ function getExpenses(year, month)
     .then(function (response) {
         if(response.status == 200)
         {
-    debugger;
 
         const oldExpenses = document.querySelectorAll(".transaction");
         oldExpenses.forEach(oldExpense => oldExpense.remove());

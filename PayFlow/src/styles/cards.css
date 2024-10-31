@@ -264,7 +264,7 @@ body {
 .control-icon1 {
     width: 40px;
     height: 40px;
-    background: url("../img/eye.png");
+    /*background: url("../img/eye.png");*/
     border-radius: 50%;
     background-position: center;
     background-color: #f0d1ff;
@@ -277,7 +277,7 @@ body {
 .control-icon2 {
     width: 40px;
     height: 40px;
-    background: url("../img/snowflake.png");
+    /*background: url("../img/snowflake.png");*/
     border-radius: 50%;
     background-position: center;
     background-color: #f0d1ff;
@@ -290,7 +290,7 @@ body {
 .control-icon3 {
     width: 40px;
     height: 40px;
-    background: url("../img/sliders-horizontal.png");
+    /*background: url("../img/sliders-horizontal.png");*/
     border-radius: 50%;
     background-position: center;
     background-color: #f0d1ff;
@@ -328,7 +328,7 @@ body {
 .expense-icon {
     width: 40px;
     height: 40px;
-    background: url("../img/shopping-cart.png");
+    /*background: url("../img/shopping-cart.png");*/
     background-position: center;
     background-repeat: no-repeat;
     background-color: #f0d1ff;

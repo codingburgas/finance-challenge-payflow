@@ -6,6 +6,7 @@ initData();
 function initData()
 {
     getExpenses();
+    getUserData();
 }
 
 function getExpenses()
@@ -32,6 +33,29 @@ function getExpenses()
                         </div>
                     `;
                 }
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}
+
+function getUserData()
+{
+    axios.get(apiURL + `user/getUserData/${localStorage.getItem('userId')}`)
+    .then(function (response) {
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                document.getElementById('welcome-name').innerText = ` ${response.data.userName}`
             }
         }
         else
