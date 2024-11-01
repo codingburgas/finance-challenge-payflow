@@ -17,6 +17,7 @@ function register(body)
     .then(function (response) {
         if(response.status == 200)
         {
+            debugger;
             if(response != null)
             {
 
@@ -24,7 +25,7 @@ function register(body)
                 if(response.data.userId != -1)
                 {
                     localStorage.setItem('userId', response.data.userId);
-                    location.replace('html/dashboard.html');
+                    location.replace('dashboard.html');
                 }
                 else
                 {

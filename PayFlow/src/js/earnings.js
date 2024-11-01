@@ -16,55 +16,55 @@ function initData()
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth() + 1;
-    getExpenses(currentYear, currentMonth);
+    getEarnings(currentYear, currentMonth);
     getUserData();
 }
 
 
-document.getElementById('expenseForm').addEventListener('submit', (event)=>{
-    //debugger;
+document.getElementById('earningForm').addEventListener('submit', (event)=>{
     event.preventDefault();
     const formData = new FormData(event.target);
     const formJSON = Object.fromEntries(formData.entries());
-    getExpenses(formJSON.year, formJSON.month);
+    getEarnings(formJSON.year, formJSON.month);
 });
 
-document.getElementById('addExpenseForm').addEventListener('submit', (event)=>{
-    event.preventDefault();
-    //debugger;
+document.getElementById('addEarningForm').addEventListener('submit', (event)=>{
+   event.preventDefault();
+    debugger;
     const formData = new FormData(event.target);
     const formJSON = Object.fromEntries(formData.entries());
     formJSON.userId = parseInt(localStorage.getItem('userId'));
     formJSON.date = `${formJSON.date} 00:00:00`;
     formJSON.id = parseInt(-1);
     formJSON.amount = parseInt(formJSON.amount);
-    addExpenses(formJSON);
+    addEarnings(formJSON);
 });
 
-function getExpenses(year, month)
+function getEarnings(year, month)
 {
-    axios.get(apiURL + `expense/getByUser/${localStorage.getItem('userId')}/${year}/${month}`)
+    axios.get(apiURL + `earning/getByUser/${localStorage.getItem('userId')}/${year}/${month}`)
     .then(function (response) {
         if(response.status == 200)
         {
-           const oldExpenses = document.querySelectorAll(".transaction");
-           oldExpenses.forEach(oldExpense => oldExpense.remove());
+            debugger;
+           const oldEarnings = document.querySelectorAll(".transaction");
+           oldEarnings.forEach(oldEarning => oldEarning.remove());
             if(response.data != null)
             {
                 console.log(response.data);
 
-                let expenses = response.data;
-                for(let i = 0;i<expenses.length;i++)
+                let earnings = response.data;
+                for(let i = 0;i<earnings.length;i++)
                 {
-                    document.getElementById('expenses').innerHTML+=`
+                    document.getElementById('earnings').innerHTML+=`
                         <div class="transaction">
                             <div class="transaction-info">
                                 <div class="transaction-icon"></div>
-                                <span>${expenses[i].type}</span>
+                                <span>${earnings[i].type}</span>
                             </div>
-                            <span>${expenses[i].amount} $</span>
+                            <span>${earnings[i].amount} $</span>
                             <div class="transaction-icon1">
-                            <span>${expenses[i].date}</span>
+                            <span>${earnings[i].date}</span>
                             </div>
                         </div>
                     `;
@@ -83,9 +83,9 @@ function getExpenses(year, month)
     });
 }
 
-function addExpenses(body)
+function addEarnings(body)
 {
-    axios.post(apiURL + 'expense/add', body)
+    axios.post(apiURL + 'earning/add', body)
     .then(function (response) {
         if(response.status == 200 || response.status == 204)
         {
@@ -94,7 +94,7 @@ function addExpenses(body)
                 console.log(response.data);
                 if(response.data.userId != -1)
                 {
-                    document.getElementById('successMessage').innerText = "Expense added successfully!";
+                    document.getElementById('successMessage').innerText = "Earning added successfully!";
                 }
                 else
                 {

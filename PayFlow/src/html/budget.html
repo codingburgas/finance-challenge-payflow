@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payflow - Dashboard</title>
+    <title>Payflow - Expenses</title>
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/budget.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
-    <script type="module" src="../js/dashboard.js" defer></script>
+    <script type="module" src="../js/budget.js" defer></script>
 </head>
-
 <body>
     <div id="dashboard">
         <aside class="sidebar">
@@ -18,17 +18,17 @@
                 <h1>PayFlow</h1>
             </div>
             <nav>
-                <a href="#" class="nav-item active">
+                <a href="dashboard.html" class="nav-item">
                     <div class="nav-icon1"></div>Dashboard
                 </a>
                 <a href="cards.html" class="nav-item">
                     <div class="nav-icon2"></div>My cards
                 </a>
-                <a href="budget.html" class="nav-item">
+                <a href="#" class="nav-item active">
                     <div class="nav-icon3"></div>Budget
                 </a>
                 <a href="expenses.html" class="nav-item">
-                    <div class="nav-icon4"></div>Expenses
+                    <div class="nav-icon4 active"></div>Expenses
                 </a>
                 <a href="earnigns.html" class="nav-item">
                     <div class="nav-icon5"></div>Earnigns
@@ -43,16 +43,10 @@
             <header class="header">
                 <div class="user-profile">
                     <div class="user-avatar"></div>
-                    <h2 class="userName" id="userName">Welcome,</h2>
+                    <h2 class="userName" id="userName">Welcome, </h2>
                     <p class="welcome-name" id="welcome-name"></p>
                 </div>
             </header>
-            <div class="dashboard-content">
-
-                
-            </div>
         </main>
-    </div>
-</body>
-
+    </body>
 </html>

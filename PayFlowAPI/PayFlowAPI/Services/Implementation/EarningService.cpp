@@ -50,7 +50,7 @@ std::vector<Earning> EarningService::readAll()
 	return earnings;
 }
 
-std::vector<Earning> EarningService::readByUserId(int userId) 
+std::vector<Earning> EarningService::readByUserId(int userId, int year, int month)
 {
 	std::string query = R"(
 		SELECT [Id]
@@ -59,13 +59,16 @@ std::vector<Earning> EarningService::readByUserId(int userId)
               ,[Type]
               ,[Amount]
         FROM [Earnings]
-        WHERE [UserId] = ?
+        WHERE [UserId] = ? AND
+		YEAR([Date]) = ? AND MONTH([Date]) = ?
 		ORDER BY [Date] DESC
 	)";
 
 	nanodbc::statement select(conn);
 	nanodbc::prepare(select, query);
 	select.bind(0, &userId);
+	select.bind(1, &year);
+	select.bind(2, &month);
 
 	nanodbc::result queryResult = nanodbc::execute(select);
 

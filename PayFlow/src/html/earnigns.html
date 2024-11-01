@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payflow - Expenses</title>
     <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/expenses.css">
+    <link rel="stylesheet" href="../styles/earnings.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
-    <script type="module" src="../js/expenses.js" defer></script>
+    <script type="module" src="../js/earnings.js" defer></script>
 </head>
 <body>
     <div id="dashboard">
@@ -27,10 +27,10 @@
                 <a href="budget.html" class="nav-item">
                     <div class="nav-icon3"></div>Budget
                 </a>
-                <a href="#" class="nav-item active">
+                <a href="expenses.html" class="nav-item">
                     <div class="nav-icon4 active"></div>Expenses
                 </a>
-                <a href="earnigns.html" class="nav-item">
+                <a href="earnigns.html" class="nav-item active">
                     <div class="nav-icon5"></div>Earnigns
                 </a>
                 <a href="#" class="nav-item">
@@ -47,10 +47,11 @@
                     <p class="welcome-name" id="welcome-name"></p>
                 </div>
             </header>
-            <div class="expenses" id="expenses">
-                <h2>My Expenses</h2>
+            <div class="earnings" id="earnings">
+                <h2>My Earnigns</h2>
             </div>
-            <form id="expenseForm">
+
+            <form id="earningForm">
                 <label for="year">Year:</label>
                 <input type="number" id="year" name="year" required>
                 
@@ -74,7 +75,7 @@
                 <button type="submit">Get Expenses</button>
             </form>
 
-            <form id="addExpenseForm">
+            <form id="addEarningForm">
                 <label for="type">Type</label>
                 <input id="type" type="text" name="type" required />
 
@@ -89,5 +90,5 @@
             <p id="successMessage"></p>
         </main>
     </div>
-</body>
+    </body>
 </html>
