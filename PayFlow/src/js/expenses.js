@@ -18,6 +18,7 @@ function initData()
     const currentMonth = currentDate.getMonth() + 1;
     getExpenses(currentYear, currentMonth);
     getUserData();
+    //deleteExpenses();
 }
 
 
@@ -94,7 +95,7 @@ function addExpenses(body)
                 console.log(response.data);
                 if(response.data.userId != -1)
                 {
-                    document.getElementById('successMessage').innerText = "Expense added successfully!";
+                    document.getElementById('successMessage').innerText;
                 }
                 else
                 {
@@ -137,3 +138,27 @@ function getUserData()
         alert("Fatal error");
     });
 }
+
+// function deleteExpenses(id)
+//  {
+//      axios.get(apiURL + `expense/delete/${id}`)
+//      .then(function (response) {
+//          if(response.status == 200)
+//          {
+//              if(response.data != null)
+//              {
+//                  document.getElementById(`expense-${id}`).remove();
+//                  alert("Expense deleted");
+//              }
+//          }
+//          else
+//          {
+//              console.log(error);
+//              alert("Expense not deleted. Error occured");
+//          }
+//      })
+//      .catch(function (error) {
+//          console.log(error);
+//         alert("Fatal error");
+//     });
+//  }

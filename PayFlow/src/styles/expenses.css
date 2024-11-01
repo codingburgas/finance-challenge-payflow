@@ -145,6 +145,13 @@ body {
   background-position: center;
 }
 
+.cards {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 80%;
+}
+
 .main-content {
     flex-grow: 1;
     padding: 3rem;
@@ -191,12 +198,6 @@ body {
   .user-profile p {
     font-size: 1.2rem;
     color: #666;
-  }
-  
-  .dashboard-content {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
   }
   
   .welcome-message {
@@ -282,12 +283,6 @@ body {
   
     .main-content {
       padding: 1.5rem;
-    }
-  
-    .dashboard-content {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
     }
     .header {
       flex-direction: column;

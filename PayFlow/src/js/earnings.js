@@ -47,7 +47,7 @@ function getEarnings(year, month)
         if(response.status == 200)
         {
             debugger;
-           const oldEarnings = document.querySelectorAll(".transaction");
+           const oldEarnings = document.querySelectorAll(".earning-item");
            oldEarnings.forEach(oldEarning => oldEarning.remove());
             if(response.data != null)
             {
@@ -57,9 +57,9 @@ function getEarnings(year, month)
                 for(let i = 0;i<earnings.length;i++)
                 {
                     document.getElementById('earnings').innerHTML+=`
-                        <div class="transaction">
-                            <div class="transaction-info">
-                                <div class="transaction-icon"></div>
+                        <div class="earning-item">
+                            <div class="earning-info">
+                                <div class="earning-icon"></div>
                                 <span>${earnings[i].type}</span>
                             </div>
                             <span>${earnings[i].amount} $</span>
@@ -94,7 +94,7 @@ function addEarnings(body)
                 console.log(response.data);
                 if(response.data.userId != -1)
                 {
-                    document.getElementById('successMessage').innerText = "Earning added successfully!";
+                    document.getElementById('successMessage').innerText;
                 }
                 else
                 {
