@@ -47,7 +47,7 @@ function getExpenses(year, month)
     .then(function (response) {
         if(response.status == 200)
         {
-           const oldExpenses = document.querySelectorAll(".transaction");
+           const oldExpenses = document.querySelectorAll(".expense-item");
            oldExpenses.forEach(oldExpense => oldExpense.remove());
             if(response.data != null)
             {
@@ -57,9 +57,9 @@ function getExpenses(year, month)
                 for(let i = 0;i<expenses.length;i++)
                 {
                     document.getElementById('expenses').innerHTML+=`
-                        <div class="transaction">
-                            <div class="transaction-info">
-                                <div class="transaction-icon"></div>
+                        <div class="expense-item">
+                            <div class="expense-info">
+                                <div class="expense-icon"></div>
                                 <span>${expenses[i].type}</span>
                             </div>
                             <span>${expenses[i].amount} $</span>
