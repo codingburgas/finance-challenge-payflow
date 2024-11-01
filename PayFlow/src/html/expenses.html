@@ -49,9 +49,10 @@
             </header>
 
             <div class="container-expensetime">
+                <h2 class="newexpense">Sort your Expenses by year and month</h2>
             <form id="expenseForm">
                 <label for="year" class="label-text">Year</label>
-                <input type="text" id="year" name="year" placeholder="Year..." required>
+                <input type="number" id="year" name="year" placeholder="Year..." required>
 
                 <label for="month" class="label-text">Month</label>
                 <select id="month" name="month" required>
@@ -82,9 +83,9 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- <form id="addExpenseForm">
+            <div class="container-addexpense">
+                <h2 class="newexpense">Do you want to add new Expense?</h2>
+            <form id="addExpenseForm">
                 <label for="type">Type</label>
                 <input id="type" type="text" name="type" required />
 
@@ -94,8 +95,9 @@
                 <label for="date">Date</label>
                 <input id="date" type="date" name="date" required />
               
-                <button type="submit">Submit</button>
-            </form> -->
+                <input type="submit" value="Submit">
+            </form>
+            </div>
             <p id="successMessage"></p>
         </main>
     </div>
