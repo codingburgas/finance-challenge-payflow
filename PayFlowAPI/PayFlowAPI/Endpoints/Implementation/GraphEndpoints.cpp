@@ -8,7 +8,14 @@
 void to_json(nlohmann::json& j, const BudgetGraphResponse& e) {
     j = nlohmann::json{
         {"budgetAmount", e.budgetAmount},
-        {"months",e.months},
+        {"date",e.date},
+        {"sum", e.sum},
+    };
+}
+
+void to_json(nlohmann::json& j, const ExpensesGraphResponse& e) {
+    j = nlohmann::json{
+        {"date",e.date},
         {"sum", e.sum},
     };
 }
@@ -29,8 +36,25 @@ crow::response getBydgetGraph(int userId, std::string expense)
     return response;
 }
 
+crow::response getExpenseGraph(int userId)
+{
+    crow::response response;
+    nlohmann::json responseBody;
+
+    GraphService service;
+    service.conn = setUpConnection();
+
+    ExpensesGraphResponse result = service.getExpenseGraph(userId);
+    service.conn.disconnect();
+
+    responseBody = result;
+    formatResponse(response, responseBody);
+    return response;
+}
+
 
 void generateGraphEndpoints(crow::App<crow::CORSHandler>& app)
 {
     CROW_ROUTE(app, "/api/graph/getBudetGraph/<int>/<string>").methods("GET"_method)(getBydgetGraph);
+    CROW_ROUTE(app, "/api/graph/getExpenseGraph/<int>").methods("GET"_method)(getExpenseGraph);
 }

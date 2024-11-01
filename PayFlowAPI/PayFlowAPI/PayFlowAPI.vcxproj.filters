@@ -161,5 +161,8 @@
     <ClInclude Include="Models\ResponseModels\UserDataResponse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Models\ResponseModels\ExpensesGraphResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

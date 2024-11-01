@@ -3,10 +3,10 @@
 class BudgetGraphResponse
 {
 public:
-	double budgetAmount;
-	std::vector<int> months;
+	std::vector<double> budgetAmount;
+	std::vector<std::string> date;
 	std::vector<double> sum;
 
-	BudgetGraphResponse(double budgetAmount, std::vector<int> months, std::vector<double> sum) : budgetAmount(budgetAmount), months(months), sum(sum) {}
+	BudgetGraphResponse(std::vector<double> budgetAmount, std::vector<std::string> date, std::vector<double> sum) : budgetAmount(budgetAmount), date(date), sum(sum) {}
 	BudgetGraphResponse() {}
 };

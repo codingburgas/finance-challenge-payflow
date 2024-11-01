@@ -1,8 +1,10 @@
 import axios from 'axios';
+import Chart from 'chart.js/auto';
 const apiURL = 'http://localhost:18080/api/'
 
+const expensesChart = document.getElementById('expenses-chart');
+const budgedChart = document.getElementById('budged-chart');
 document.addEventListener("DOMContentLoaded", (event) => {
-    debugger;
     let userId = localStorage.getItem('userId'); 
     if(userId == -1 || userId == null || userId == undefined || userId == "undefined")
     {
@@ -15,6 +17,7 @@ initData();
 function initData()
 {
     getUserData();
+    initCharts();
 }
 
 function getUserData()
@@ -40,77 +43,107 @@ function getUserData()
     });
 }
 
-// function getExpenses()
-// {
-//     axios.get(apiURL + `expense/getFixedByUser/${localStorage.getItem('userId')}/7`)
-//     .then(function (response) {
-//         if(response.status == 200)
-//         {
-//             if(response.data != null)
-//             {
-//                 console.log(response.data);
+function initCharts()
+{
+    initExpenseChart();
+    initBudgetChart();
+}
 
-//                 let expenses = response.data;
-    
-//                 for(let i = 0;i<expenses.length;i++)
-//                 {
-//                     document.getElementById('expenses-card').innerHTML+=`
-//                         <div class="transaction">
-//                             <div class="transaction-info">
-//                                 <div class="transaction-icon"></div>
-//                                 <span>${expenses[i].type}</span>
-//                             </div>
-//                             <span>${expenses[i].amount} $</span>
-//                         </div>
-//                     `;
-//                 }
-//             }
-//         }
-//         else
-//         {
-//             console.log(error);
-//             alert("Unauthorised");
-//         }
-//     })
-//     .catch(function (error) {
-//         console.log(error);
-//         alert("Fatal error");
-//     });
-// }
+function initExpenseChart()
+{
+    axios.get(apiURL + `graph/getExpenseGraph/${localStorage.getItem('userId')}`)
+    .then(function (response) {
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                console.log(response.data);
 
-// function getEarnings(){
-//     axios.get(apiURL + `earning/getFixedByUser/${localStorage.getItem('userId')}/7`)
-//     .then(function (response) {
-//         if(response.status == 200)
-//         {
-//             if(response.data != null)
-//             {
-//                 console.log(response.data);
+                new Chart(budgedChart, {
+                    type: 'bar',
+                    data: {
+                      labels: response.data.date,
+                      datasets: [{
+                        label: 'Expenses',
+                        data: response.data.sum,
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                        legend: {
+                            position: 'top',
+                          },
+                          title: {
+                            display: true,
+                            text: 'Expenses'
+                          },
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                });         
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}
 
-//                 let earnings = response.data;
-    
-//                 for(let i = 0;i<earnings.length;i++)
-//                 {
-//                     document.getElementById('earnings-card').innerHTML+=`
-//                         <div class="transaction">
-//                             <div class="transaction-info">
-//                                 <div class="transaction-icon"></div>
-//                                 <span>${earnings[i].type}</span>
-//                             </div>
-//                             <span>${earnings[i].amount} $</span>
-//                         </div>
-//                     `;
-//                 }
-//             }
-//         }
-//         else
-//         {
-//             console.log(error);
-//             alert("Unauthorised");
-//         }
-//     })
-//     .catch(function (error) {
-//         console.log(error);
-//         alert("Fatal error");
-//     });
-// }
+function initBudgetChart()
+{
+    axios.get(apiURL + `graph/getBudetGraph/${localStorage.getItem('userId')}/Fee`)
+    .then(function (response) {
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                console.log(response.data);
+                new Chart(expensesChart, {
+                    data: {
+                      datasets: [{
+                        label: 'Budget',
+                        data: response.data.budgetAmount,
+                        type: 'line'
+                      },
+                      {
+                        label: 'Expenses',
+                        data: response.data.sum,
+                        type: 'bar'
+                      }
+                    ],
+                    labels: response.data.date,
+
+                    },
+                    options: {
+                         responsive: true,
+                        legend: {
+                            position: 'top',
+                          },
+                          title: {
+                            display: true,
+                            text: 'Expenses'
+                          },
+                    }
+                });         
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}

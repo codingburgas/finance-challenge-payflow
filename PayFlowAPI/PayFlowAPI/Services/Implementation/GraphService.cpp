@@ -14,18 +14,19 @@ BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense
 	select.bind(1, expense.c_str());
 
 	nanodbc::result queryResult = nanodbc::execute(select);
-	BudgetGraphResponse graph;
+	int budget;
 	if (queryResult.next())
 	{
-		graph.budgetAmount = queryResult.get<double>("Amount");
+		budget = queryResult.get<double>("Amount");
 	}
 
 	std::string innerQuery = R"(
-		SELECT MONTH([Date]), SUM(Amount)
+		SELECT CONCAT(YEAR([Date]), '-', MONTH([Date])) AS 'Date',
+			   SUM([Amount])
 		FROM [Expenses]
 		WHERE UserId = ? AND [Type] = ?
-		GROUP BY MONTH([Date])
-		ORDER BY MONTH([Date])
+		GROUP BY YEAR([Date]), MONTH([Date])
+		ORDER BY YEAR([Date]), MONTH([Date])
 	)";
 
 	nanodbc::statement innerSelect(conn);
@@ -35,10 +36,38 @@ BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense
 
 	nanodbc::result innerQueryResult = nanodbc::execute(innerSelect);
 
+	BudgetGraphResponse graph;
 	while (innerQueryResult.next())
 	{
-		graph.months.push_back(innerQueryResult.get<int>(0));
+		graph.date.push_back(innerQueryResult.get<std::string>(0));
 		graph.sum.push_back(innerQueryResult.get<double>(1));
+		graph.budgetAmount.push_back(budget);
+	}
+
+	return graph;
+}
+
+ExpensesGraphResponse GraphService::getExpenseGraph(int userId)
+{
+	std::string query = R"(
+		SELECT CONCAT(YEAR([Date]), '-', MONTH([Date])) AS 'Date',
+			   SUM([Amount])
+		FROM [PayFlow].[dbo].[Expenses]
+		WHERE [UserId] = ?
+		GROUP BY YEAR([Date]), MONTH([Date])
+		ORDER BY YEAR([Date]), MONTH([Date])
+	)";
+
+	nanodbc::statement select(conn);
+	nanodbc::prepare(select, query);
+	select.bind(0, &userId);
+	nanodbc::result result = nanodbc::execute(select);
+
+	ExpensesGraphResponse graph;
+	while (result.next())
+	{
+		graph.date.push_back(result.get<std::string>(0));
+		graph.sum.push_back(result.get<double>(1));
 	}
 
 	return graph;
