@@ -47,6 +47,29 @@
                     <p class="welcome-name" id="welcome-name"></p>
                 </div>
             </header>
+
+            <div class="budgets" id="budgets">
+                <h3>Budgets</h3>
+                <div class="budget-item">
+                    <div class="budget-info">
+                        <div class="budget-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-addbudget">
+            <form id="addBudgetForm">
+                <label for="expenseType">Type</label>
+                <input id="expenseType" type="text" name="expenseType" required />
+
+                <label for="amount">Amount</label>
+                <input id="amount" type="number" name="amount" required />
+              
+                <input type="submit" value="Submit">
+            </form>
+            </div>
+
+            <p id="successMessage"></p>
         </main>
     </body>
 </html>
