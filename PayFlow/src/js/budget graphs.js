@@ -11,11 +11,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });
 
-document.getElementById('logoutButton').addEventListener('click', function()
-{
-    logout();
-});
-
 initData();
 
 function initData()
@@ -46,11 +41,6 @@ function getUserData()
         console.log(error);
         alert("Fatal error");
     });
-}
-
-function logout() {
-    localStorage.setItem('userId', -1);
-    location.replace('../index.html');
 }
 
 async function generateGraphs()

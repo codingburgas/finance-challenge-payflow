@@ -326,10 +326,22 @@ body {
   }
 }
 
-.chart
+.expenses-chart
 {
   background-color: #eee;
   padding: 15px;
   border-radius: 25px;
-  width: 700px;
+  border-style: solid;
+  border-color: #E4E0E1;
 }
+
+.earnings-chart
+{
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 25px;
+  border-style: solid;
+  border-color: #E4E0E1;
+  margin-top: 25px;
+}
+

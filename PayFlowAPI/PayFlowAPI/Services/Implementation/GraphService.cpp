@@ -14,7 +14,7 @@ BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense
 	select.bind(1, expense.c_str());
 
 	nanodbc::result queryResult = nanodbc::execute(select);
-	int budget;
+	int budget = 0;
 	if (queryResult.next())
 	{
 		budget = queryResult.get<double>("Amount");

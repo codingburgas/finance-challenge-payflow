@@ -1,5 +1,10 @@
 import axios from 'axios';
 const apiURL = 'http://localhost:18080/api/'
+import Chart from 'chart.js/auto'
+
+const earningsChart = document.getElementById('earnings-chart');
+
+let barChart = null;
 
 document.addEventListener("DOMContentLoaded", (event) => {
     let userId = localStorage.getItem('userId'); 
@@ -48,6 +53,12 @@ function initData()
     const currentMonth = currentDate.getMonth() + 1;
     getEarnings(currentYear, currentMonth);
     getUserData();
+    initCharts();
+}
+
+function initCharts()
+{
+    initEarningChart();
 }
 
 function getEarnings(year, month)
@@ -149,6 +160,79 @@ function getUserData()
         alert("Fatal error");
     });
 }
+
+function initEarningChart()
+{
+    if(barChart != null)
+    {
+        barChart.destroy();
+    }
+    const context = earningsChart.getContext('2d');
+    context.clearRect(0, 0, earningsChart.width, earningsChart.height);
+    axios.get(apiURL + `graph/getEarningGraph/${localStorage.getItem('userId')}`)
+    .then(function (response) {
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                console.log(response.data);
+
+                barChart = new Chart(earningsChart, {
+                    type: 'bar',
+                    data: {
+                      labels: response.data.date,
+                      datasets: [{
+                        label: 'Earnings',
+                        data: response.data.sum,
+                        borderWidth: 1,
+                      }]
+                    },
+                    options: {
+                        borderColor: '#F9E400',
+                        backgroundColor: '#C65BCF',
+                        legend: {
+                            position: 'top',
+                          },
+                          title: {
+                            display: true,
+                            text: 'Earnings'
+                          },
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      },
+                      animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce', 
+                        delay: (context) => context.dataIndex * 200, 
+                        onProgress: (animation) => {
+                            console.log('Animation Progress:', animation.currentStep / animation.numSteps);
+                        },
+                        onComplete: () => {
+                            console.log('Animation Complete');
+                        }
+                    },
+                    hover: {
+                        animationDuration: 500,
+                    },
+                    }
+                });         
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}
+
+
 
 function deleteEarning(earningId)
 {
