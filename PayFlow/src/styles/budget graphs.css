@@ -205,52 +205,6 @@ body {
     gap: 2rem;
     margin-bottom: 2rem;
 }
-
-.card {
-    width: 340px;
-}
-
-.credit-card {
-    height: 200px;
-    background: linear-gradient(135deg, #e6b8ff, #c77dff);
-    border-radius: 15px;
-    padding: 20px;
-    color: white;
-    position: relative;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-number {
-    position: absolute;
-    bottom: 60px;
-    left: 20px;
-    font-size: 1.2rem;
-}
-
-.card-details {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.mastercard-logo {
-    width: 50px;
-    height: 30px;
-    background-color: white;
-    border-radius: 4px;
-}
-
-.card-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
-
 .control-button {
     display: flex;
     flex-direction: column;
@@ -259,45 +213,6 @@ body {
     color: #666;
     text-decoration: none;
     font-size: 0.8rem;
-}
-
-.control-icon1 {
-    width: 40px;
-    height: 40px;
-    /*background: url("../img/eye.png");*/
-    border-radius: 50%;
-    background-position: center;
-    background-color: #f0d1ff;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.control-icon2 {
-    width: 40px;
-    height: 40px;
-    /*background: url("../img/snowflake.png");*/
-    border-radius: 50%;
-    background-position: center;
-    background-color: #f0d1ff;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.control-icon3 {
-    width: 40px;
-    height: 40px;
-    /*background: url("../img/sliders-horizontal.png");*/
-    border-radius: 50%;
-    background-position: center;
-    background-color: #f0d1ff;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .expenses {
@@ -347,14 +262,6 @@ body {
 
     .main-content {
         padding: 1rem;
-    }
-
-    .cards-container {
-        flex-direction: column;
-    }
-
-    .card {
-        width: 100%;
     }
 }
 

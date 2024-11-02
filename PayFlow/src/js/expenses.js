@@ -14,6 +14,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });
 
+document.getElementById("expenses").addEventListener("click", function(event) {
+    debugger;
+    if (event.target && event.target.classList.contains("delete-btn")) {
+        const expenseItem = event.target.closest(".expense-item");
+        if (expenseItem) {
+            const expenseId = expenseItem.getAttribute("data-id");
+            deleteExpense(expenseId);
+        }
+    }
+});
+
 initData();
 
 function initData()
@@ -68,7 +79,7 @@ function getExpenses(year, month)
                 for(let i = 0;i<expenses.length;i++)
                 {
                     document.getElementById('expenses').innerHTML+=`
-                        <div class="expense-item">
+                        <div class="expense-item" data-id="${expenses[i].id}">
                             <div class="expense-info">
                                 <div class="expense-icon"></div>
                                 <span>${expenses[i].type}</span>
@@ -77,6 +88,7 @@ function getExpenses(year, month)
                             <div class="transaction-icon1">
                             <span>${expenses[i].date}</span>
                             </div>
+                            <button class="delete-btn" type="button">Delete</button>
                         </div>
                     `;
                 }
@@ -206,6 +218,31 @@ function initExpenseChart()
                     },
                     }
                 });         
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}
+
+function deleteExpense(expenseId)
+{
+    axios.delete(apiURL + `expense/delete/${expenseId}`)
+    .then(function (response) {
+        debugger;
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                console.log('expense deleted');
+                initData();
             }
         }
         else

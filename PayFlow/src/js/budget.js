@@ -9,6 +9,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });
 
+document.getElementById("budgets").addEventListener("click", function(event) {
+    debugger;
+    if (event.target && event.target.classList.contains("delete-btn")) {
+        const budgetItem = event.target.closest(".budget-item");
+        if (budgetItem) {
+            const budgetId = budgetItem.getAttribute("data-id");
+            deleteBudget(budgetId);
+        }
+    }
+});
+
 initData();
 
 function initData()
@@ -58,8 +69,8 @@ function getBudgets()
         if(response.status == 200)
          {
             
-            const oldEarnings = document.querySelectorAll(".budget-item");
-            oldEarnings.forEach(oldEarning => oldEarning.remove());
+            const oldBudgets = document.querySelectorAll(".budget-item");
+            oldBudgets.forEach(oldBudget => oldBudget.remove());
              if(response.data != null)
              {
                  console.log(response.data);
@@ -69,12 +80,13 @@ function getBudgets()
                  for(let i = 0;i<budgets.length;i++)
                  {
                      document.getElementById('budgets').innerHTML+=`
-                         <div class="budget-item">
+                         <div class="budget-item" data-id="${budgets[i].id}">
                             <div class="budget-info">
                                 <div class="budget-icon"></div>
                                 <span>${budgets[i].expenseType}</span>
                             </div>
                             <span>${budgets[i].amount} $</span>
+                            <button class="delete-btn" type="button">Delete</button>
                         </div>
                      `;
                  }
@@ -110,6 +122,31 @@ function addBudget(body)
                     alert("Unauthorised");
                 }
                 getBudgets();
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}
+
+function deleteBudget(budgetId)
+{
+    axios.delete(apiURL + `budget/delete/${budgetId}`)
+    .then(function (response) {
+        debugger;
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                console.log('budget deleted');
+                initData();
             }
         }
         else

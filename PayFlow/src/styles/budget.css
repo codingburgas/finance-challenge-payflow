@@ -319,6 +319,8 @@ body {
     border-radius: 15px;
     padding: 1.5rem;
     margin-top: 2rem;
+    border-style: solid;
+    border-color: #E4E0E1;
 }
 
 .budgets h3 {
@@ -331,6 +333,13 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 0;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    border-radius: 25px;
+    border: 1px solid rgb(180, 180, 180);
+    font-family: Helvetica;
+    font-size: 18px;
+    margin-bottom: 0.2rem;
 }
 
 .budget-info {
@@ -379,7 +388,7 @@ body {
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
   }
   
@@ -392,4 +401,21 @@ body {
     background-color: #f2f2f2;
     padding: 20px;
     margin-top: 50px;
+    border-style: solid;
+    border-color: #E4E0E1;
+}
+.label-text{
+  font-size: 20px;
+  font-family: Helvetica;
+}
+
+.delete-btn{
+  background-color: #f0d1ff;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #b1b1b1;
+  color: rgb(3, 3, 3);            
+  font-size: 12px;          
+  cursor: pointer;
+  padding: 7px;
 }

@@ -21,8 +21,8 @@
                 <a href="dashboard.html" class="nav-item">
                     <div class="nav-icon1"></div>Dashboard
                 </a>
-                <a href="cards.html" class="nav-item">
-                    <div class="nav-icon2"></div>My cards
+                <a href="budget graphs.html" class="nav-item">
+                    <div class="nav-icon2"></div>Budget graphs
                 </a>
                 <a href="#" class="nav-item active">
                     <div class="nav-icon3"></div>Budget
@@ -50,23 +50,18 @@
 
             <div class="budgets" id="budgets">
                 <h3>My Budgets</h3>
-                <div class="budget-item">
-                    <div class="budget-info">
-                        <div class="budget-icon"></div>
-                    </div>
-                </div>
             </div>
 
             <div class="container-addbudget">
-            <form id="addBudgetForm">
-                <label for="expenseType">Type</label>
-                <input id="expenseType" type="text" name="expenseType" required />
+                <form id="addBudgetForm">
+                    <label for="expenseType" class="label-text">Type</label>
+                    <input id="expenseType" type="text" name="expenseType" placeholder="Type of your new expense...." />
 
-                <label for="amount">Amount</label>
-                <input id="amount" type="number" name="amount" required />
-              
-                <input type="submit" value="Submit">
-            </form>
+                    <label for="amount" class="label-text">Amount</label>
+                    <input id="amount" type="number" name="amount" placeholder="How much does it cost...." />
+                
+                    <input type="submit" value="Submit">
+                </form>
             </div>
 
             <p id="successMessage"></p>
