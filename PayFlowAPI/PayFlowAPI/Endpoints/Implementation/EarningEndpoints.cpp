@@ -1,10 +1,11 @@
 #include "../Headers/EarningEndpoints.h"
-#include "..\..\SetUp\Headers\SetUp.h"
+#include "../../SetUp/Headers/SetUp.h"
 #include "../../Models/RequestModels/EarningRequest.h"
 #include "../../Models/ResponseModels/EarningResponse.h"
 #include "../../Services/Headers/EarningService.h"
 #include <nlohmann/json.hpp>
 
+// Converts EarningRequest and EarningResponse objects to/from JSON format
 void to_json(nlohmann::json& j, const EarningRequest& e) {
     j = nlohmann::json{
         {"id", e.id },
@@ -52,12 +53,13 @@ crow::response getEarning(int id)
     Earning* earning = service.read(id);
     service.conn.disconnect();
 
-    if (earning != nullptr)
+    if (earning != nullptr) // Check if the earning record was found
     {
+        // If found, convert the earning object into a response format and assign it to responseBody
         responseBody = EarningResponse(*earning);
     }
     formatResponse(response, responseBody);
-    delete earning;
+    delete earning; // Clean up allocated memory for the earning object to prevent memory leaks
     return response;
 }
 
@@ -73,11 +75,14 @@ crow::response getEarningsByUser(int userId, int year, int month)
     service.conn.disconnect();
 
     std::vector<EarningResponse> earningResponse;
+    // Loop through each earning object retrieved and convert it to the response format
     for (size_t i = 0; i < earning.size(); i++)
     {
+        // Add each earning to the response vector
         earningResponse.push_back(earning[i]);
     }
 
+    // Check if any earnings were found; if so, assign them to the responseBody
     if (earningResponse.size() > 0)
     {
         responseBody = earningResponse;
@@ -134,6 +139,7 @@ crow::response deleteEarning(int id)
     return response;
 }
 
+// Function to get a specified number of fixed amount earnings for a user and return as an HTTP response
 crow::response getFixedAmountEarningByUser(int userId, int count) {
 
     crow::response response;
@@ -164,11 +170,13 @@ void generateEarningEndpoints(crow::App<crow::CORSHandler>& app)
     CROW_ROUTE(app, "/api/earning/get/<int>").methods("GET"_method)(getEarning);
     CROW_ROUTE(app, "/api/earning/getByUser/<int>/<int>/<int>").methods("GET"_method)(getEarningsByUser);
     CROW_ROUTE(app, "/api/earning/getFixedByUser/<int>/<int>").methods("GET"_method)(getFixedAmountEarningByUser);
+    // It parses the JSON body to create an EarningRequest object and calls addEarning   
     CROW_ROUTE(app, "/api/earning/add").methods("POST"_method)([](const crow::request& request) {
         nlohmann::json requestBody = nlohmann::json::parse(request.body);
-        EarningRequest earningRequest = requestBody.get<EarningRequest>();
+        EarningRequest earningRequest = requestBody.get<EarningRequest>();// Convert the JSON to an EarningRequest object
         return addEarning(earningRequest);
     });
+    // The route responds to PUT requests, where <int> is the earning ID
     CROW_ROUTE(app, "/api/earning/update/<int>").methods("PUT"_method)([](const crow::request& request, int id) {
         nlohmann::json requestBody = nlohmann::json::parse(request.body);
         EarningRequest earningRequest = requestBody.get<EarningRequest>();

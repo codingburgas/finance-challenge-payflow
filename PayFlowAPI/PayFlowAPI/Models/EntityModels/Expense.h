@@ -1,7 +1,7 @@
 #pragma once
 #include <nanodbc/nanodbc.h>
 #include "..\..\SetUp\Headers\SetUp.h"
-#include "../RequestModels/ExpenseRequest.h"
+#include "..\RequestModels\ExpenseRequest.h"
 
 class Expense {
 public:
@@ -13,6 +13,7 @@ public:
 
 	Expense(ExpenseRequest e) : id(e.id), userId(e.userId), type(e.type), amount(e.amount)
 	{
+		// Converts the date from the request to a timestamp
 		date = convertToTimestamp(e.date);
 	}
 

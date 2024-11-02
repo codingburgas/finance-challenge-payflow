@@ -2,6 +2,7 @@
 
 bool BudgetService::create(Budget newBudgets)
 {
+	// SQL query to select the budget details based on the provided ID
 	std::string query = R"(
 	INSERT INTO [Budgets]
 			([UserId]
@@ -13,10 +14,12 @@ bool BudgetService::create(Budget newBudgets)
 	nanodbc::statement create(conn);
 	nanodbc::prepare(create, query);
 
+	// Bind the new budget's properties to the prepared statement
 	create.bind(0, &newBudgets.userId);
 	create.bind(1, newBudgets.expenseType.c_str());
 	create.bind(2, &newBudgets.amount);
 
+	// Execute the insert query to add the new budget to the database
 	nanodbc::execute(create);
 
 	return true;
@@ -33,6 +36,7 @@ std::vector<Budget> BudgetService::readAll()
 	)";
 	nanodbc::result queryResult = nanodbc::execute(conn, query);
 
+	// Loop through the result set and populate the budgets vector
 	std::vector <Budget> budgets;
 	while (queryResult.next()) {
 		Budget budget;
@@ -46,6 +50,7 @@ std::vector<Budget> BudgetService::readAll()
 	return budgets;
 }
 
+// Retrieves all Budget entries associated with a specific user from the database and returns them as a vector
 std::vector<Budget> BudgetService::readByUserId(int userId)
 {
 	std::string query = R"(
@@ -108,6 +113,7 @@ Budget* BudgetService::read(int id)
 	}
 }
 
+// Updates the budget entry in the database identified by the specified id with the details from updatedBudget
 bool BudgetService::update(int id, Budget updatedBudget)
 {
 	std::string query = R"(

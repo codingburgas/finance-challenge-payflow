@@ -2,6 +2,7 @@
 
 bool ExpenseService::create(Expense newExpense)
 {
+	//Inserting a new expense record into the Expenses table
 	std::string query = R"(
 	INSERT INTO [Expenses]
 			([UserId]
@@ -38,6 +39,7 @@ std::vector<Expense> ExpenseService::readAll()
 
 	std::vector <Expense> expenses;
 	while (queryResult.next()) {
+		// Retrieve and assign values from the query result to the Expense object fields
 		Expense expense;
 		expense.id = queryResult.get<int>("Id");
 		expense.userId = queryResult.get<int>("UserId");
@@ -52,6 +54,7 @@ std::vector<Expense> ExpenseService::readAll()
 
 std::vector<Expense> ExpenseService::readByUserId(int userId, int year, int month)
 {
+	//Select expenses for a specific user and date criteria
 	std::string query = R"(
 		SELECT [Id]
               ,[UserId]
@@ -72,6 +75,7 @@ std::vector<Expense> ExpenseService::readByUserId(int userId, int year, int mont
 
 	nanodbc::result queryResult = nanodbc::execute(select);
 
+	// Iterate through the result set to extract each expense
 	std::vector <Expense> expenses;
 	while (queryResult.next()) {
 		Expense expense;
@@ -103,6 +107,7 @@ Expense* ExpenseService::read(int id)
 	select.bind(0, &id);
 
 	nanodbc::result queryResult = nanodbc::execute(select);
+	// If there is a next result in the query, create a new Expense object
 	if (queryResult.next())
 	{
 		Expense* expense = new Expense();
@@ -162,6 +167,7 @@ bool ExpenseService::remove(int id)
 
 std::vector<Expense> ExpenseService::readFixedAmountByUser(int userId, int count)
 {
+	// SQL query to select expenses for a specific user
 	std::string query = R"(
 		SELECT [Id]
               ,[UserId]

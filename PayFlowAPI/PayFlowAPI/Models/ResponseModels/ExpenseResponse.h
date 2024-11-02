@@ -11,6 +11,7 @@ public:
 
 	ExpenseResponse(Expense e) : id(e.id), userId(e.userId), type(e.type), amount(e.amount)
 	{
+		// Convert the date from the Expense object to a formatted string
 		date =
 			std::to_string(e.date.year) + "-" +
 			std::to_string(e.date.month) + "-" +

@@ -9,6 +9,7 @@
 class GraphService {
 public:
 	nanodbc::connection conn;
+	// Method to retrieve budget graph data for a specific user and expense type
 	BudgetGraphResponse getBudgetGraph(int userId, std::string expense);
 	ExpensesGraphResponse getExpenseGraph(int userId);
 	EarningsGraphResponse getEarningGraph(int userId);

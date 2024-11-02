@@ -2,6 +2,7 @@
 
 bool UserService::create(User newuser)
 {
+	// SQL query to insert a new user into the Users table with specified fields
 	std::string query = R"(
 		INSERT INTO [Users]
            ([UserName]
@@ -28,6 +29,7 @@ bool UserService::create(User newuser)
 
 int* UserService::readUserIdByUserNameAndPassword(User user)
 {
+	// SQL query to select the user ID based on the provided username and password
 	std::string query = R"(
 		SELECT [Id]
 		FROM [Users]
@@ -42,8 +44,10 @@ int* UserService::readUserIdByUserNameAndPassword(User user)
 
 	nanodbc::result result = select.execute();
 
+	// Check if any result is returned
 	if (result.next())
 	{
+		// If a user ID is found, allocate memory for the user ID and return it
 		int* userId = new int(result.get<int>("Id"));
 		return userId;
 	}

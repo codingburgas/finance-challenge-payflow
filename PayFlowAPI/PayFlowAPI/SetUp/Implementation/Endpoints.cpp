@@ -5,6 +5,7 @@
 #include "../../Endpoints/Headers/GraphEndpoints.h"
 #include "../../Endpoints/Headers/ExpenseEndpoints.h"
 
+// Function to set up all API endpoints for the application
 void generateEndpoints(crow::App<crow::CORSHandler>& app)
 {
     // Handling CORS preflight requests (OPTIONS requests)
@@ -14,6 +15,7 @@ void generateEndpoints(crow::App<crow::CORSHandler>& app)
         return response;
     });
 
+    // Generate and register all specific endpoint handlers
     generateGraphEndpoints(app);
     generateExpenseEndpoints(app);
     generateBudgetEndpoints(app);

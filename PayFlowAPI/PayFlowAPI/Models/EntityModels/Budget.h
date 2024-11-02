@@ -1,7 +1,7 @@
 #pragma once
 #include <nanodbc/nanodbc.h>
 #include "..\..\SetUp\Headers\SetUp.h"
-#include "../RequestModels/BudgetRequest.h"
+#include "..\RequestModels\BudgetRequest.h"
 
 class Budget {
 public:
@@ -10,6 +10,7 @@ public:
 	std::string expenseType;
 	double amount;
 
+	// Constructor that initializes a Budget object from a BudgetRequest object
 	Budget(BudgetRequest b) : id(b.id), userId(b.userId), expenseType(b.expenseType), amount(b.amount){}
 
 	Budget() {}

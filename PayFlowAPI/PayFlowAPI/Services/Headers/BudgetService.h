@@ -7,7 +7,7 @@
 
 class BudgetService {
 public:
-	nanodbc::connection conn;
+	nanodbc::connection conn; // Database connection
 	bool create(Budget newEarning);
 	std::vector<Budget> readAll();
 	std::vector<Budget> readByUserId(int userId);

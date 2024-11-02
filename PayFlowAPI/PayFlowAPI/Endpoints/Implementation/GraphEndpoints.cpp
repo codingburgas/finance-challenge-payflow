@@ -6,7 +6,7 @@
 #include "..\..\SetUp\Headers\SetUp.h"
 #include <nlohmann/json.hpp>
 
-
+// Converts BudgetGraphResponse and ExpenseGraphResponse and EarningGraphResponse objects to/from JSON format
 void to_json(nlohmann::json& j, const BudgetGraphResponse& e) {
     j = nlohmann::json{
         {"budgetAmount", e.budgetAmount},
@@ -78,7 +78,10 @@ crow::response getEarningGraph(int userId) {
 
 void generateGraphEndpoints(crow::App<crow::CORSHandler>& app)
 {
+    //Uses GET method and calls the getBydgetGraph function to handle the request.
     CROW_ROUTE(app, "/api/graph/getBudetGraph/<int>/<string>").methods("GET"_method)(getBydgetGraph);
+    // Uses GET method and calls the getExpenseGraph function to handle the request.
     CROW_ROUTE(app, "/api/graph/getExpenseGraph/<int>").methods("GET"_method)(getExpenseGraph);
-    CROW_ROUTE(app, "/api/graph/getEarningGraph/<int>").methods("GET"_method)(getEarningGraph);
+    // Route to get the earning graph for a specific user.
+    CROW_ROUTE(app, "/api/graph/getEarningGraph/<int>").methods("GET"_method)(getEarningGraph); // The route takes an integer (user ID) as a parameter.
 }

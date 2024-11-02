@@ -1,7 +1,9 @@
 #include "../Headers/GraphService.h"
 #include "../../SetUp/Headers/SetUp.h"
+
 BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense)
 {
+	// SQL query to retrieve the budget amount for a specific user and expense type
 	std::string query = R"(
 		SELECT [Amount]
         FROM [Budgets]
@@ -14,12 +16,14 @@ BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense
 	select.bind(1, expense.c_str());
 
 	nanodbc::result queryResult = nanodbc::execute(select);
-	int budget = 0;
+	int budget = 0; // Variable to hold the retrieved budget amount
 	if (queryResult.next())
 	{
+		// Get the budget amount from the query result
 		budget = queryResult.get<double>("Amount");
 	}
 
+	// SQL query to retrieve the total expenses grouped by year and month for the specified user and type
 	std::string innerQuery = R"(
 		SELECT CONCAT(YEAR([Date]), '-', MONTH([Date])) AS 'Date',
 			   SUM([Amount])
@@ -36,6 +40,7 @@ BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense
 
 	nanodbc::result innerQueryResult = nanodbc::execute(innerSelect);
 
+	// Loop through the results of the inner query
 	BudgetGraphResponse graph;
 	while (innerQueryResult.next())
 	{
@@ -49,6 +54,7 @@ BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense
 
 ExpensesGraphResponse GraphService::getExpenseGraph(int userId)
 {
+	// SQL query to get the sum of expenses grouped by year and month for a specific user
 	std::string query = R"(
 		SELECT CONCAT(YEAR([Date]), '-', MONTH([Date])) AS 'Date',
 			   SUM([Amount])
@@ -75,6 +81,7 @@ ExpensesGraphResponse GraphService::getExpenseGraph(int userId)
 
 EarningsGraphResponse GraphService::getEarningGraph(int userId)
 {
+	// SQL query to get the sum of earnings grouped by year and month for a specific user
 	std::string query = R"(
 		SELECT CONCAT(YEAR([Date]), '-', MONTH([Date])) AS 'Date',
 			   SUM([Amount])

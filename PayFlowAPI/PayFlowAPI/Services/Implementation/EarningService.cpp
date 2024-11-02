@@ -14,6 +14,7 @@ bool EarningService::create(Earning newEarning)
 	nanodbc::statement create(conn);
 	nanodbc::prepare(create, query);
 
+	// Bind the parameters for the prepared statement
 	create.bind(0, &newEarning.userId);
 	create.bind(1, &newEarning.date);
 	create.bind(2, newEarning.type.c_str());
@@ -52,6 +53,7 @@ std::vector<Earning> EarningService::readAll()
 
 std::vector<Earning> EarningService::readByUserId(int userId, int year, int month)
 {
+	// SQL query to select earnings based on UserId, year, and month
 	std::string query = R"(
 		SELECT [Id]
               ,[UserId]
@@ -72,7 +74,7 @@ std::vector<Earning> EarningService::readByUserId(int userId, int year, int mont
 
 	nanodbc::result queryResult = nanodbc::execute(select);
 
-	std::vector <Earning> earnings;
+	std::vector <Earning> earnings; // Vector to hold the resulting earnings
 	while (queryResult.next()) {
 		Earning earning;
 		earning.id = queryResult.get<int>("Id");
@@ -162,6 +164,7 @@ bool EarningService::remove(int id)
 
 std::vector<Earning> EarningService::readFixedAmountByUser(int userId, int count)
 {
+	// SQL query to select a fixed number of earnings based on UserId
 	std::string query = R"(
 		SELECT [Id]
               ,[UserId]

@@ -1,10 +1,11 @@
 #include <nlohmann/json.hpp>
-#include "..\..\SetUp\Headers\SetUp.h"
+#include "../../SetUp/Headers/SetUp.h"
 #include "../Headers/ExpenseEndpoints.h"
 #include "../../Models/RequestModels/ExpenseRequest.h"
 #include "../../Models/ResponseModels/ExpenseResponse.h"
 #include "../../Services/Headers/ExpenseService.h"
 
+// Converts ExpenseRequest and ExpenseResponse objects to/from JSON format
 void to_json(nlohmann::json& j, const ExpenseRequest& e) {
     j = nlohmann::json{
         {"id", e.id },
@@ -72,9 +73,11 @@ crow::response getExpensesByUser(int userId, int year, int month)
     std::vector<Expense> expense = service.readByUserId(userId, year, month);
     service.conn.disconnect();
 
+    // Iterate over each retrieved Expense and convert it to ExpenseResponse,
     std::vector<ExpenseResponse> expenseResponse;
     for (size_t i = 0; i < expense.size(); i++)
     {
+        // Assumes operator overloads for conversion
         expenseResponse.push_back(expense[i]);
     }
 
@@ -134,6 +137,7 @@ crow::response deleteExpense(int id)
     return response;
 }
 
+// Function to get a specified number of fixed amount earnings for a user and return as an HTTP response
 crow::response getFixedAmountExpensesByUser(int userId, int count)
 {
     crow::response response;
@@ -145,12 +149,14 @@ crow::response getFixedAmountExpensesByUser(int userId, int count)
     std::vector<Expense> expense = service.readFixedAmountByUser(userId, count);
     service.conn.disconnect();
 
+    // from Expense to ExpenseResponse, possibly via a constructor or conversion operator
     std::vector<ExpenseResponse> expenseResponse;
     for (size_t i = 0; i < expense.size(); i++)
     {
         expenseResponse.push_back(expense[i]);
     }
 
+    // If there are any expenses retrieved, set the responseBody to the populated expenseResponse
     if (expenseResponse.size() > 0)
     {
         responseBody = expenseResponse;
@@ -165,12 +171,14 @@ void generateExpenseEndpoints(crow::App<crow::CORSHandler>& app)
     CROW_ROUTE(app, "/api/expense/getByUser/<int>/<int>/<int>").methods("GET"_method)(getExpensesByUser);
     CROW_ROUTE(app, "/api/expense/getFixedByUser/<int>/<int>").methods("GET"_method)(getFixedAmountExpensesByUser);
     CROW_ROUTE(app, "/api/expense/add").methods("POST"_method)([](const crow::request& request) {
+        // Parse the incoming JSON request body into a nlohmann::json object
         nlohmann::json requestBody = nlohmann::json::parse(request.body);
         ExpenseRequest expenseRequest = requestBody.get<ExpenseRequest>();
         return addExpense(expenseRequest);
     });
     CROW_ROUTE(app, "/api/expense/update/<int>").methods("PUT"_method)([](const crow::request& request, int id) {
         nlohmann::json requestBody = nlohmann::json::parse(request.body);
+        // Convert the parsed JSON into an ExpenseRequest object for the update operation
         ExpenseRequest expenseRequest = requestBody.get<ExpenseRequest>();
         return updateExpense(id, expenseRequest);
     });
