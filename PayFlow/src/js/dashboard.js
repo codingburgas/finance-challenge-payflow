@@ -3,6 +3,7 @@ import Chart from 'chart.js/auto';
 const apiURL = 'http://localhost:18080/api/'
 
 const expensesChart = document.getElementById('expenses-chart');
+const earningsChart = document.getElementById('earnings-chart');
 const budgedChart = document.getElementById('budged-chart');
 document.addEventListener("DOMContentLoaded", (event) => {
     let userId = localStorage.getItem('userId'); 
@@ -47,6 +48,7 @@ function initCharts()
 {
     initExpenseChart();
     initBudgetChart();
+    initEarningChart();
 }
 
 function initExpenseChart()
@@ -66,10 +68,12 @@ function initExpenseChart()
                       datasets: [{
                         label: 'Expenses',
                         data: response.data.sum,
-                        borderWidth: 1
+                        borderWidth: 1,
                       }]
                     },
                     options: {
+                        borderColor: '#F9E400',
+                        backgroundColor: '#C65BCF',
                         legend: {
                             position: 'top',
                           },
@@ -81,7 +85,21 @@ function initExpenseChart()
                         y: {
                           beginAtZero: true
                         }
-                      }
+                      },
+                      animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce', 
+                        delay: (context) => context.dataIndex * 200, 
+                        onProgress: (animation) => {
+                            console.log('Animation Progress:', animation.currentStep / animation.numSteps);
+                        },
+                        onComplete: () => {
+                            console.log('Animation Complete');
+                        }
+                    },
+                    hover: {
+                        animationDuration: 500,
+                    },
                     }
                 });         
             }
@@ -97,6 +115,77 @@ function initExpenseChart()
         alert("Fatal error");
     });
 }
+
+function initEarningChart()
+{
+    axios.get(apiURL + `graph/getEarningGraph/${localStorage.getItem('userId')}`)
+    .then(function (response) {
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                console.log(response.data);
+
+                new Chart(earningsChart, {
+                    type: 'bar',
+                    data: {
+                      labels: response.data.date,
+                      datasets: [{
+                        label: 'Earnings',
+                        data: response.data.sum,
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                        borderColor: '#FFF100',
+                        backgroundColor: '#874CCC',
+                        legend: {
+                            position: 'top',
+                          },
+                          title: {
+                            display: true,
+                            text: 'Earnings'
+                          },
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      },
+
+                      animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce', 
+                        delay: (context) => context.dataIndex * 200, 
+                        onProgress: (animation) => {
+                            console.log('Animation Progress:', animation.currentStep / animation.numSteps);
+                        },
+                        onComplete: () => {
+                            console.log('Animation Complete');
+                        }
+                    },
+                    hover: {
+                        animationDuration: 500,
+                    },
+
+
+                    } 
+
+                });         
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}
+
+
 
 function initBudgetChart()
 {
@@ -115,7 +204,7 @@ function initBudgetChart()
                         type: 'line'
                       },
                       {
-                        label: 'Expenses',
+                        label: 'Budget',
                         data: response.data.sum,
                         type: 'bar'
                       }
@@ -124,14 +213,30 @@ function initBudgetChart()
 
                     },
                     options: {
+                        borderColor: '#FFF100',
+                        backgroundColor: '#7E60BF',
                          responsive: true,
                         legend: {
                             position: 'top',
                           },
                           title: {
                             display: true,
-                            text: 'Expenses'
+                            text: 'Budget'
                           },
+                          animation: {
+                            duration: 2000,
+                            easing: 'easeOutBounce', 
+                            delay: (context) => context.dataIndex * 200, 
+                            onProgress: (animation) => {
+                                console.log('Animation Progress:', animation.currentStep / animation.numSteps);
+                            },
+                            onComplete: () => {
+                                console.log('Animation Complete');
+                            }
+                        },
+                        hover: {
+                            animationDuration: 500,
+                        },
                     }
                 });         
             }

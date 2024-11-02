@@ -357,3 +357,17 @@ body {
         width: 100%;
     }
 }
+
+.chart
+{
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 25px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.chartHeader
+{
+    text-align: center;
+}

@@ -329,6 +329,7 @@ body {
   }
   .label-text{
     font-size: 20px;
+    font-family: Helvetica;
   }
   
   input[type=submit] {
@@ -338,9 +339,10 @@ body {
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
+    font-size: 15px;
   }
   
   input[type=submit]:hover {
@@ -351,6 +353,8 @@ body {
     border-radius: 20px;
     background-color: #f2f2f2;
     padding: 20px;
+    border-style: solid;
+    border-color: #E4E0E1;
   }
 
   .expenses {
@@ -358,6 +362,8 @@ body {
     border-radius: 15px;
     padding: 1.5rem;
     margin-top: 2rem;
+    border-style: solid;
+    border-color: #E4E0E1;
 }
 
 .expenses h3 {
@@ -370,6 +376,13 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 0;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    border-radius: 25px;
+    border: 1px solid rgb(180, 180, 180);
+    font-family: Helvetica;
+    font-size: 18px;
+    margin-bottom: 0.2rem;
 }
 
 .expense-info {
@@ -388,8 +401,9 @@ body {
     border-radius: 50%;
 }
 
-.newexpense{
+.textforms{
     margin-top: 10px;
+    font-family: Helvetica;
 }
 
 .container-addexpense input[type=text], select {
@@ -418,6 +432,7 @@ body {
 
   .label-text{
     font-size: 20px;
+    font-family: Helvetica;
   }
   
   .container-addexpense input[type=submit] {
@@ -427,8 +442,10 @@ body {
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
+    font-family: Helvetica;
+    font-size: 15px;
   }
   
   .container-addexpense input[type=submit]:hover {
@@ -440,6 +457,35 @@ body {
     background-color: #f2f2f2;
     padding: 20px;
     margin-top: 50px;
+    font-family: Helvetica;
+    border-style: solid;
+    border-color: #E4E0E1;
+}
+.expenses-chart
+{
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 25px;
+}
+.scroll-link{
+  width: 30%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  margin-left: 50rem;
+  background-color: white;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  border: 15px solid #ccc;
 }
 
-
+.linked-element{
+  text-align: center;
+}
+.expensesCircle-chart{
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 25px;
+  display: flex;
+}

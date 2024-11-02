@@ -4,10 +4,12 @@
 #include <nanodbc/nanodbc.h>
 #include "../../Models/ResponseModels/BudgetGraphResponse.h"
 #include "../../Models/ResponseModels/ExpensesGraphResponse.h"
+#include "../../Models/ResponseModels/EarningGraphResponse.h"
 
 class GraphService {
 public:
 	nanodbc::connection conn;
 	BudgetGraphResponse getBudgetGraph(int userId, std::string expense);
 	ExpensesGraphResponse getExpenseGraph(int userId);
+	EarningsGraphResponse getEarningGraph(int userId);
 };

@@ -72,3 +72,29 @@ ExpensesGraphResponse GraphService::getExpenseGraph(int userId)
 
 	return graph;
 }
+
+EarningsGraphResponse GraphService::getEarningGraph(int userId)
+{
+	std::string query = R"(
+		SELECT CONCAT(YEAR([Date]), '-', MONTH([Date])) AS 'Date',
+			   SUM([Amount])
+		FROM [PayFlow].[dbo].[Earnings]
+		WHERE [UserId] = ?
+		GROUP BY YEAR([Date]), MONTH([Date])
+		ORDER BY YEAR([Date]), MONTH([Date])
+	)";
+
+	nanodbc::statement select(conn);
+	nanodbc::prepare(select, query);
+	select.bind(0, &userId);
+	nanodbc::result result = nanodbc::execute(select);
+
+	EarningsGraphResponse graph;
+	while (result.next())
+	{
+		graph.date.push_back(result.get<std::string>(0));
+		graph.sum.push_back(result.get<double>(1));
+	}
+
+	return graph;
+}

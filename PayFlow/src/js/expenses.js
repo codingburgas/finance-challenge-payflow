@@ -1,5 +1,10 @@
 import axios from 'axios';
 const apiURL = 'http://localhost:18080/api/'
+import Chart from 'chart.js/auto'
+
+const expensesChart = document.getElementById('expenses-chart');
+
+let barChart = null;
 
 document.addEventListener("DOMContentLoaded", (event) => {
     let userId = localStorage.getItem('userId'); 
@@ -18,7 +23,12 @@ function initData()
     const currentMonth = currentDate.getMonth() + 1;
     getExpenses(currentYear, currentMonth);
     getUserData();
-    //deleteExpenses();
+    initCharts();
+}
+
+function initCharts()
+{
+    initExpenseChart();
 }
 
 
@@ -139,26 +149,73 @@ function getUserData()
     });
 }
 
-// function deleteExpenses(id)
-//  {
-//      axios.get(apiURL + `expense/delete/${id}`)
-//      .then(function (response) {
-//          if(response.status == 200)
-//          {
-//              if(response.data != null)
-//              {
-//                  document.getElementById(`expense-${id}`).remove();
-//                  alert("Expense deleted");
-//              }
-//          }
-//          else
-//          {
-//              console.log(error);
-//              alert("Expense not deleted. Error occured");
-//          }
-//      })
-//      .catch(function (error) {
-//          console.log(error);
-//         alert("Fatal error");
-//     });
-//  }
+function initExpenseChart()
+{
+    if(barChart != null)
+    {
+        barChart.destroy();
+    }
+    const context = expensesChart.getContext('2d');
+    context.clearRect(0, 0, expensesChart.width, expensesChart.height);
+    axios.get(apiURL + `graph/getExpenseGraph/${localStorage.getItem('userId')}`)
+    .then(function (response) {
+        if(response.status == 200)
+        {
+            if(response.data != null)
+            {
+                console.log(response.data);
+
+                barChart = new Chart(expensesChart, {
+                    type: 'bar',
+                    data: {
+                      labels: response.data.date,
+                      datasets: [{
+                        label: 'Expenses',
+                        data: response.data.sum,
+                        borderWidth: 1,
+                      }]
+                    },
+                    options: {
+                        borderColor: '#F9E400',
+                        backgroundColor: '#C65BCF',
+                        legend: {
+                            position: 'top',
+                          },
+                          title: {
+                            display: true,
+                            text: 'Expenses'
+                          },
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      },
+                      animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce', 
+                        delay: (context) => context.dataIndex * 200, 
+                        onProgress: (animation) => {
+                            console.log('Animation Progress:', animation.currentStep / animation.numSteps);
+                        },
+                        onComplete: () => {
+                            console.log('Animation Complete');
+                        }
+                    },
+                    hover: {
+                        animationDuration: 500,
+                    },
+                    }
+                });         
+            }
+        }
+        else
+        {
+            console.log(error);
+            alert("Unauthorised");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+        alert("Fatal error");
+    });
+}

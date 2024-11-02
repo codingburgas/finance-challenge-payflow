@@ -24,12 +24,6 @@
     <ClCompile Include="SetUp\Implementation\Endpoints.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Services\Implementation\PaymentService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Endpoints\Implementation\PaymentEndpoints.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Endpoints\Implementation\UserEndpoints.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,21 +60,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SetUp\Headers\Endpoints.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Services\Headers\PaymentService.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\EntityModels\Payment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\ResponseModels\PaymentResponse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Endpoints\Headers\PaymentEndpoints.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\RequestModels\PaymentRequest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Endpoints\Headers\UserEndpoints.h">
@@ -162,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Models\ResponseModels\ExpensesGraphResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ResponseModels\EarningGraphResponse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Chart from 'chart.js/auto';
+
 const apiURL = 'http://localhost:18080/api/'
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -9,12 +11,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });
 
-/*document.addEventListener("DOMContentLoaded", (event) => {
-    if (!localStorage.getItem('userId')) {
-        location.replace('login.html');
-    }
-});*/
-
 document.getElementById('logoutButton').addEventListener('click', function()
 {
     logout();
@@ -24,49 +20,9 @@ initData();
 
 function initData()
 {
-    getExpenses();
     getUserData();
-}
+    generateGraphs();
 
-function getExpenses()
-{
-    axios.get(apiURL + `expense/getFixedByUser/${localStorage.getItem('userId')}/7`)
-    .then(function (response) {
-        if(response.status == 200)
-        {
-            if(response.data != null)
-            {
-                console.log(response.data);
-
-                let expenses = response.data;
-    
-                for(let i = 0;i<expenses.length;i++)
-                {
-                    document.getElementById('expenses').innerHTML+=`
-                        <div class="expense-item">
-                            <div class="expense-info">
-                                <div class="expense-icon"></div>
-                                <span>${expenses[i].type}</span>
-                            </div>
-                            <span>${expenses[i].amount} $</span>
-                            <div class="transaction-icon1">
-                            <span>${expenses[i].date}</span>
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-        }
-        else
-        {
-            console.log(error);
-            alert("Unauthorised");
-        }
-    })
-    .catch(function (error) {
-        console.log(error);
-        alert("Fatal error");
-    });
 }
 
 function getUserData()
@@ -97,3 +53,66 @@ function logout() {
     location.replace('../index.html');
 }
 
+async function generateGraphs()
+{
+    debugger;
+    const container = document.getElementById('budgetGraphs'); 
+    const budgets = await axios.get(apiURL + `budget/getByUser/${localStorage.getItem('userId')}`);
+
+    for(let i = 0;i<budgets.data.length;i++)
+    {
+        debugger;
+        const canvasContainer = document.createElement("div");
+        const canvasName = document.createElement("h1");
+        const canvas = document.createElement("canvas");
+        canvasName.classList.add('chartHeader');
+        canvas.classList.add("chart");
+        canvasContainer.appendChild(canvasName);
+        canvasContainer.appendChild(canvas);
+        container.appendChild(canvasContainer);
+
+        try
+        {
+            const chartData = await axios.get(apiURL + `graph/getBudetGraph/${localStorage.getItem('userId')}/${budgets.data[i].expenseType}`)
+            canvasName.innerText = budgets.data[i].expenseType;
+            new Chart(canvas, {
+                data: {
+                datasets: [{
+                    label: 'Budget',
+                    data: chartData.data.budgetAmount,
+                    type: 'line'
+                },
+                {
+                    label: 'Amount',
+                    data: chartData.data.sum,
+                    type: 'bar'
+                }
+                ],
+                labels: chartData.data.date,
+    
+                },
+                options: {
+                    borderColor: '#FFF100',
+                    backgroundColor: '#7E60BF',
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: budgets.data[i].expenseType
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce', 
+                        delay: (context) => context.dataIndex * 200, 
+                    },
+                    hover: {
+                        animationDuration: 500,
+                    },
+                }
+            });    
+        }
+        catch(e){}   
+    } 
+}
