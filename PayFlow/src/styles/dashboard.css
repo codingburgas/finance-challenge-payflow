@@ -329,8 +329,8 @@ body {
 .expenses-chart
 {
   background-color: #eee;
-  padding: 15px;
-  border-radius: 25px;
+  padding: 20px;
+  border-radius: 50%;
   border-style: solid;
   border-color: #E4E0E1;
 }

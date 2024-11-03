@@ -317,8 +317,8 @@ body {
 /* Expenses form for year and month */
 
   input[type=number], select {
-    width: 100%;
-    padding: 12px 20px;
+    width: 50%;
+    padding: 12px;
     margin: 8px 0;
     display: block;
     border: 1px solid #ccc;
@@ -370,6 +370,7 @@ body {
 .expenses h3 {
     margin-bottom: 1rem;
     color: #333;
+    font-size: 10px;
 }
 
 .expense-item {
