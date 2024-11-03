@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 document.getElementById('logInForm').addEventListener('submit', (event)=>{
     event.preventDefault();
     const formData = new FormData(event.target);
+    console.log(event)
     const formJSON = Object.fromEntries(formData.entries());
     logIn(formJSON);
 });
