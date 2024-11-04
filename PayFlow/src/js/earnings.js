@@ -114,7 +114,7 @@ function getEarnings(year, month)
 // Add a new earning to the database
 function addEarnings(body)
 {
-    axios.post(apiURL + 'earning/add', body)
+    axios.post(apiURL + 'earning/add',  )
     .then(function (response) {
         if(response.status == 200 || response.status == 204)
         {

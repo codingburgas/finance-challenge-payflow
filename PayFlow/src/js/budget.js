@@ -1,8 +1,9 @@
-import axios from 'axios';
+import axios from 'axios'; // Import the Axios library for making HTTP requests
 const apiURL = 'http://localhost:18080/api/'
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    let userId = localStorage.getItem('userId'); 
+    let userId = localStorage.getItem('userId'); // Attempt to retrieve the 'userId' value from the browser's localStorage.
+     // Check if 'userId' is invalid or missing
     if(userId == -1 || userId == null || userId == undefined || userId == "undefined")
     {
         location.replace('../index.html');
@@ -11,8 +12,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 document.getElementById("budgets").addEventListener("click", function(event) {
     debugger;
+    // This code checks if the event target event.target exists and if it contains the class "delete-btn"
     if (event.target && event.target.classList.contains("delete-btn")) {
         const budgetItem = event.target.closest(".budget-item");
+        // Check if a budget item was found
         if (budgetItem) {
             const budgetId = budgetItem.getAttribute("data-id");
             deleteBudget(budgetId);
@@ -68,7 +71,6 @@ function getBudgets()
      .then(function (response) {
         if(response.status == 200)
          {
-            
             const oldBudgets = document.querySelectorAll(".budget-item");
             oldBudgets.forEach(oldBudget => oldBudget.remove());
              if(response.data != null)
@@ -113,14 +115,6 @@ function addBudget(body)
             if(response != null)
             {
                 console.log(response.data);
-                if(response.data.userId != -1)
-                {
-                    document.getElementById('successMessage').innerText;
-                }
-                else
-                {
-                    alert("Unauthorised");
-                }
                 getBudgets();
             }
         }
@@ -146,7 +140,8 @@ function deleteBudget(budgetId)
             if(response.data != null)
             {
                 console.log('budget deleted');
-                initData();
+                getBudgets();
+
             }
         }
         else
