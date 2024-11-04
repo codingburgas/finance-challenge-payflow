@@ -27,7 +27,9 @@
 ### Programming languages & third-party libraries:
 
 <img src="https://cdn.worldvectorlogo.com/logos/c.svg" alt="C++ logo" width=48px>
-
+<img src="https://cdn.discordapp.com/attachments/1298325749312258059/1303116417893269596/256-removebg-preview.png?ex=672a953c&is=672943bc&hm=c07616b18507b4d080ad5ceec8d923a35279495884ce0af1db00a37717cbcc2d&" alt="Crow logo" width=48px>
+<img src="https://cdn.discordapp.com/attachments/1298325749312258059/1303116848224796723/19501893-removebg-preview.png?ex=672a95a3&is=67294423&hm=90afc7e84129695f05767d39a44917d786f7c9ff1ee1f86bfd729d5fe902150b&" alt="nanodbc logo" width=48px>
+<img src="https://cdn.discordapp.com/attachments/1298325749312258059/1303117415592493116/png-clipart-microsoft-sql-server-sql-server-management-studio-computer-servers-microsoft-angle-text-removebg-preview.png?ex=672a962a&is=672944aa&hm=099a2e1199778f7a4ea02f0b8e971facfb1d6b2a1044653582c86826b9f1b61d&" alt="ssms logo" width=48px>
 
 ### Tools used for documantation & presentation:
 
