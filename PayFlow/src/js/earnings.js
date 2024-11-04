@@ -1,11 +1,12 @@
-import axios from 'axios';
+import axios from 'axios'; // Import Axios for making HTTP requests
 const apiURL = 'http://localhost:18080/api/'
-import Chart from 'chart.js/auto'
+import Chart from 'chart.js/auto' // Import Chart.js for displaying charts
 
 const earningsChart = document.getElementById('earnings-chart');
 
 let barChart = null;
 
+// Check if user is logged in when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", (event) => {
     let userId = localStorage.getItem('userId'); 
     if(userId == -1 || userId == null || userId == undefined || userId == "undefined")
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });
 
+// Event listener for delete button clicks within the earnings list
 document.getElementById("earnings").addEventListener("click", function(event) {
     debugger;
     if (event.target && event.target.classList.contains("delete-btn")) {
@@ -25,6 +27,7 @@ document.getElementById("earnings").addEventListener("click", function(event) {
     }
 });
 
+// Fetch and display earnings for a specific month and year when form is submitted
 document.getElementById('earningForm').addEventListener('submit', (event)=>{
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -32,6 +35,7 @@ document.getElementById('earningForm').addEventListener('submit', (event)=>{
     getEarnings(formJSON.year, formJSON.month);
 });
 
+// Handle the submission of adding a new earning
 document.getElementById('addEarningForm').addEventListener('submit', (event)=>{
    event.preventDefault();
     debugger;
@@ -46,6 +50,7 @@ document.getElementById('addEarningForm').addEventListener('submit', (event)=>{
 
 initData();
 
+// Initialize the data for the current user and populate page elements
 function initData()
 {
     const currentDate = new Date();
@@ -56,6 +61,7 @@ function initData()
     initCharts();
 }
 
+// Initialize earnings chart
 function initCharts()
 {
     initEarningChart();
@@ -105,6 +111,7 @@ function getEarnings(year, month)
     });
 }
 
+// Add a new earning to the database
 function addEarnings(body)
 {
     axios.post(apiURL + 'earning/add', body)
@@ -137,6 +144,7 @@ function addEarnings(body)
     });
 }
 
+// Retrieve user data to personalize page (e.g., welcome message)
 function getUserData()
 {
     axios.get(apiURL + `user/getUserData/${localStorage.getItem('userId')}`)
@@ -161,6 +169,7 @@ function getUserData()
     });
 }
 
+// Initialize earnings chart using Chart.js and populate with data from API
 function initEarningChart()
 {
     if(barChart != null)
@@ -233,7 +242,7 @@ function initEarningChart()
 }
 
 
-
+// Delete earning by ID
 function deleteEarning(earningId)
 {
     axios.delete(apiURL + `earning/delete/${earningId}`)
