@@ -1,7 +1,7 @@
 # PayFlow
 <p align="center">
 
-<img width = "400" alt="logo" src="https://github.com/codingburgas/finance-challenge-payflow/blob/main/Document/PayFlow%20(1).png">
+<img width = "400" alt="logo" src="https://github.com/codingburgas/finance-challenge-payflow/blob/main/Documents/assets/logo.png">
 
 ## 🏢 Our team
 <p><a href="https://github.com/RDNikolov22">Rostislav Nikolov</a> - Scrum Trainer</p>
@@ -41,3 +41,5 @@
 
 
 ## 📃 Documentation
+- ### [Presentation]https://github.com/codingburgas/finance-challenge-payflow/blob/main/Documents/PayFlow's%20presentation.pptx
+- ### [Documentation]https://github.com/codingburgas/finance-challenge-payflow/blob/main/Documents/PayFlow-doc.docx
