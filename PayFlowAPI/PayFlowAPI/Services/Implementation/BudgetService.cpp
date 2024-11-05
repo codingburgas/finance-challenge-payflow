@@ -39,6 +39,7 @@ std::vector<Budget> BudgetService::readAll()
 	// Loop through the result set and populate the budgets vector
 	std::vector <Budget> budgets;
 	while (queryResult.next()) {
+		// Retrieves the id of the record from the column and assigns it to the id field of the earning object
 		Budget budget;
 		budget.id = queryResult.get<int>("Id");
 		budget.userId = queryResult.get<int>("UserId");
@@ -70,6 +71,7 @@ std::vector<Budget> BudgetService::readByUserId(int userId)
 
 	std::vector <Budget> budgets;
 	while (queryResult.next()) {
+		// Retrieves the id of the record from the column and assigns it to the id field of the earning object
 		Budget budget;
 		budget.id = queryResult.get<int>("Id");
 		budget.userId = queryResult.get<int>("UserId");

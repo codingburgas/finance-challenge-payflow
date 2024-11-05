@@ -8,6 +8,7 @@ public:
 	std::string expenseType;
 	double amount;
 
+	// A constructor for converting a response to a Expense type model
 	BudgetResponse(Budget b) : id(b.id), userId(b.userId), expenseType(b.expenseType), amount(b.amount) {}
 
 	// Constructor that initializes a BudgetResponse object with specific values

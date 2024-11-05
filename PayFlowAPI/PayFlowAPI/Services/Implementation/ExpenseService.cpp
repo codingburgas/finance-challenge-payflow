@@ -37,6 +37,7 @@ std::vector<Expense> ExpenseService::readAll()
 	)";
 	nanodbc::result queryResult = nanodbc::execute(conn, query);
 
+	// Retrieves the id of the record from the column and assigns it to the id field of the earning object
 	std::vector <Expense> expenses;
 	while (queryResult.next()) {
 		// Retrieve and assign values from the query result to the Expense object fields
@@ -78,6 +79,7 @@ std::vector<Expense> ExpenseService::readByUserId(int userId, int year, int mont
 	// Iterate through the result set to extract each expense
 	std::vector <Expense> expenses;
 	while (queryResult.next()) {
+		// Retrieves the id of the record from the column and assigns it to the id field of the earning object
 		Expense expense;
 		expense.id = queryResult.get<int>("Id");
 		expense.userId = queryResult.get<int>("UserId");
@@ -110,6 +112,7 @@ Expense* ExpenseService::read(int id)
 	// If there is a next result in the query, create a new Expense object
 	if (queryResult.next())
 	{
+		// -> access pointer member
 		Expense* expense = new Expense();
 		expense->id = queryResult.get<int>("Id");
 		expense->userId = queryResult.get<int>("UserId");
@@ -177,7 +180,7 @@ std::vector<Expense> ExpenseService::readFixedAmountByUser(int userId, int count
         FROM [Expenses]
         WHERE [UserId] = ?
 		ORDER BY [Date]            
-		OFFSET 0 ROWS           
+		OFFSET 0 ROWS           // Sort the results by the Date column in descending order
 		FETCH NEXT ? ROWS ONLY;
 	)";
 
@@ -191,6 +194,7 @@ std::vector<Expense> ExpenseService::readFixedAmountByUser(int userId, int count
 	std::vector <Expense> expenses;
 	while (queryResult.next()) {
 		Expense expense;
+		// Retrieves the id of the record from the column and assigns it to the id field of the earning object
 		expense.id = queryResult.get<int>("Id");
 		expense.userId = queryResult.get<int>("UserId");
 		expense.date = queryResult.get<nanodbc::timestamp>("Date");

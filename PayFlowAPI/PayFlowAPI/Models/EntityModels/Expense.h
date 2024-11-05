@@ -11,6 +11,7 @@ public:
 	std::string type;
 	double amount;
 
+	// Constructors that convert the request to a model of Expense
 	Expense(ExpenseRequest e) : id(e.id), userId(e.userId), type(e.type), amount(e.amount)
 	{
 		// Converts the date from the request to a timestamp

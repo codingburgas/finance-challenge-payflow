@@ -70,17 +70,19 @@ crow::response getExpensesByUser(int userId, int year, int month)
     ExpenseService service;
     service.conn = setUpConnection();
 
+    // Calls the service method
     std::vector<Expense> expense = service.readByUserId(userId, year, month);
     service.conn.disconnect();
 
-    // Iterate over each retrieved Expense and convert it to ExpenseResponse,
+    // Iterates over the elements of the array and adds them to the Response
     std::vector<ExpenseResponse> expenseResponse;
     for (size_t i = 0; i < expense.size(); i++)
     {
-        // Assumes operator overloads for conversion
+        // We can use the Epense vector because it is a constructor in the model
         expenseResponse.push_back(expense[i]);
     }
 
+    // Checks for new results
     if (expenseResponse.size() > 0)
     {
         responseBody = expenseResponse;
@@ -171,8 +173,9 @@ void generateExpenseEndpoints(crow::App<crow::CORSHandler>& app)
     CROW_ROUTE(app, "/api/expense/getByUser/<int>/<int>/<int>").methods("GET"_method)(getExpensesByUser);
     CROW_ROUTE(app, "/api/expense/getFixedByUser/<int>/<int>").methods("GET"_method)(getFixedAmountExpensesByUser);
     CROW_ROUTE(app, "/api/expense/add").methods("POST"_method)([](const crow::request& request) {
-        // Parse the incoming JSON request body into a nlohmann::json object
+        // Converts the requestbody to json format
         nlohmann::json requestBody = nlohmann::json::parse(request.body);
+        // Converts the json form to an object from ExpenseRuquest
         ExpenseRequest expenseRequest = requestBody.get<ExpenseRequest>();
         return addExpense(expenseRequest);
     });

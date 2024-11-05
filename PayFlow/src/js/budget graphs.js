@@ -50,8 +50,8 @@ function getUserData()
 // The asynchronous function allows operations that require time to be performed, such as retrieving data from an API
 async function generateGraphs()
 {
-    debugger;
     const container = document.getElementById('budgetGraphs'); 
+    // Await indicates that the function will wait
     const budgets = await axios.get(apiURL + `budget/getByUser/${localStorage.getItem('userId')}`);
 
     // Starts a loop that goes through each item in the budget data array

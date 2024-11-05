@@ -44,7 +44,7 @@ BudgetGraphResponse GraphService::getBudgetGraph(int userId, std::string expense
 	BudgetGraphResponse graph;
 	while (innerQueryResult.next())
 	{
-		graph.date.push_back(innerQueryResult.get<std::string>(0));
+		graph.date.push_back(innerQueryResult.get<std::string>(0)); // Retrieves the value from the first column (index 0)
 		graph.sum.push_back(innerQueryResult.get<double>(1));
 		graph.budgetAmount.push_back(budget);
 	}

@@ -41,6 +41,7 @@ document.getElementById('addEarningForm').addEventListener('submit', (event)=>{
     debugger;
     const formData = new FormData(event.target);
     const formJSON = Object.fromEntries(formData.entries());
+    // Format the data
     formJSON.userId = parseInt(localStorage.getItem('userId'));
     formJSON.date = `${formJSON.date} 00:00:00`;
     formJSON.id = parseInt(-1);
@@ -53,8 +54,9 @@ initData();
 // Initialize the data for the current user and populate page elements
 function initData()
 {
-    const currentDate = new Date();
+    const currentDate = new Date(); // new Date() automatically sets the current time, today's date and time
     const currentYear = currentDate.getFullYear();
+    // The getMonth() method returns the index of the month where January is 0
     const currentMonth = currentDate.getMonth() + 1;
     getEarnings(currentYear, currentMonth);
     getUserData();
@@ -84,7 +86,7 @@ function getEarnings(year, month)
                 for(let i = 0;i<earnings.length;i++)
                 {
                     document.getElementById('earnings').innerHTML+=`
-                        <div class="earning-item" data-id="${earnings[i].id}">
+                        <div class="earning-item" data-id="${earnings[i].id}"> // Will retrieve the ID of the current element from the array
                             <div class="earning-info">
                                 <div class="earning-icon"></div>
                                 <span>${earnings[i].type}</span>
@@ -176,8 +178,8 @@ function initEarningChart()
     {
         barChart.destroy();
     }
-    const context = earningsChart.getContext('2d');
-    context.clearRect(0, 0, earningsChart.width, earningsChart.height);
+    const context = earningsChart.getContext('2d'); // Used to draw graphs
+    context.clearRect(0, 0, earningsChart.width, earningsChart.height); // Schedule update
     axios.get(apiURL + `graph/getEarningGraph/${localStorage.getItem('userId')}`)
     .then(function (response) {
         if(response.status == 200)
